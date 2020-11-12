@@ -24,6 +24,8 @@
 \usepackage{listings}
 \usepackage{ bbold }
 
+
+
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -51,7 +53,7 @@
 \begin{frame}{Motywacja}
 \begin{itemize}
     \item Szkic dowodu Twierdzenia Skolem-Mahler-Lech
-    \item Problem jeszce nie rozwiązany
+    \item Problem jeszcze nie rozwiązany
 \end{itemize}
 \end{frame}
 % tlumaczenie dlaczego to nie jest wykonywalna na maszynie
@@ -62,14 +64,14 @@
     $$\text{while } u^{T}\cdot x != 0 do$$
     $$ \vec{x} := M \vec{x}$$
 
-    Jestem zainteresowany problemem stopu dla tego problemu? To jest nieskończona pamięc, poniewaz $x$ może rosnąć bardzo dużo
+    Jestem zainteresowany problemem stopu dla tego problemu? To jest nieskończona pamięć, ponieważ $x$ może rosnąć bardzo dużo
     Czy jest rozstrzygalny ten program? To twierdzi inaczej?
     
     
 \end{frame}
     
 \begin{frame}{Pytanie o inny warunek}
-        Zmienmy warunek na inny 
+        Zmieńmy warunek na inny 
     $$\vec{x} := \vec{a}, \vec{a} \in Z^{k}$$
     $$\text{while } u^{T}\cdot x \geq  0 do$$
     $$ \vec{x} := M \vec{x}$$
@@ -77,23 +79,25 @@
 \end{frame}    
 
 \begin{frame}{Inne pytanie z terminów automatów}
-    Mamy alfabet $\sigma$ and A, B skończony deterministyczny lub nie-deterministyczny nad alfabetem 
+    Mamy alfabet $\Sigma$ i A, B skończony deterministyczny lub nie-deterministyczny nad alfabetem $\Simga$
     \begin{itemize}
         \item $u_n$ numer slów długości $n$ akceptowanych przez $A$
-        \item  $v_n$ jest numerem slow długośći $n$ akceptowanych przez automat $B$
+        \item  $v_n$ jest numerem slow długości $n$ akceptowanych przez automat $B$
+\begin{frame}{Zacznijmy od prostego}
+
 
     \end{itemize}
     Question:
     $\exist n = u_n = v_n$
     lub inne 
     $\forall v_n \leq u_n$
-    Ten problemy nie jest są znane jako rozstyrzgalne i nie są nierostrzygalne
+    Ten problemy nie jest są znane jako rozstrzygalne i nie są nierozstrzygalne
     I sa redukowane do problemu 1
-    Znana jest rozstrzygalnosc dla automatow autoamtow rozmiaru $4$
+    Znana jest rozstrzygalność dla automatów rozmiaru $4$
     
 \end{frame}
 
-\begin{frame}{Liniowe rownanie rekurencyjne}
+\begin{frame}{Liniowe równanie rekurencyjne}
     $$
         a_0, \ldots a_{k-1} \in \mathbb{Z} 
     $$
@@ -131,11 +135,11 @@
     
     $$
     M = \begin{bmatrix}
-    a_{k-1} & 1 &  \ldots & 0 \\
-    a_{k-2} & 0 & 1 & \ldots 0  \\
+    a_1 & 1 &  \ldots & 0 \\
+    a_2 & 0 & 1 & \ldots 0  \\
     \vdots & 0 & \ldots & 0 \\ 
-    a_1 & 0 & \ldots & 1 \\
-    a_0 & 0 & \ldots & 0
+    a_{k-1} & 0 & \ldots & 1 \\
+    a_k & 0 & \ldots & 0
     \end{bmatrix}
     $$
 \end{frame}
@@ -223,13 +227,50 @@ u_{0} = 0
 \end{frame}
 
 \begin{frame}{Bogactwo innych przykładów}
-    $u_n = n$
+    \begin{equation}
+    \begin{cases}
+        u_0 = 0 \\
+        u_n = n
+    \end{cases}
+    \end{equation}
+
     Jak zapisać za pomocą równania rekurencyjnego? 
-    $u_n = n^{2}$
+    \begin{equation}
+    \begin{cases}
+        u_n = n^{2} \\
+        u_0 = 0 \\
+        u_1 = 1 \\ 
+        u_2 = 4
+    \end{cases}
+    \end{equation}
 \end{frame}
 
 \begin{frame}{$u_n = n^{2}$}
     $u_{n+3} = 3 u_{n+2} - 3 u_{n+1} + u_{n} $
+\end{frame}
+
+\begin{frame}{Skolem problem}
+    Czy dane liniowe rekurencyjne ma zero. 
+    $u_n = 0$ dla pewnego $n$?
+    \begin{itemize}
+        \item Istnieje algorytm pozwalający sprawdzić, czy istnieje nieskończona ilość zer, a jeśli tak, to znaleźć rozkład tych zer na zbiory okresowe, gwarantowane przez twierdzenie Skolema-Mahlera-Lecha. 
+        \item Nie wiadomo jednak, czy istnieje algorytm pozwalający określić, czy sekwencja rekurencyjna ma jakieś nieperidyczne zera. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Przestrzeń wektorowa równań lin. rekurencyjnych}
+    Rozważmy przestrzeń:
+    \begin{equation}
+
+    \{
+        \mathbb{Q^{w}} = 
+        \textit{wszystkie nieskończone szeregi o współczynnikach w } \mathbb{Q} 
+    \}
+            
+    \end{equation}
+    
+    
+    Z $$\forall \textlangle {x_n}, \sequence {y_n} \in R^{\N}: \sequence {x_n} \circ' \sequence {y_n} = \sequence {x_n \circ y_n}$$
 \end{frame}
 
 \begin{frame}{Skolem–Mahler–Lech }
@@ -243,7 +284,7 @@ u_{0} = 0
    \item  Rozważmy ciąg: 
    \item  $$ 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 5, 0, 8, 0, ...$$
     \item      Zauważmy szereg Fibonacciego pomiędzy zerami. 
-    \item  Zdefinionway takim wzorem:
+    \item  Zdefiniowany takim wzorem:
     \item  $F(i) = F(i-2) + F(i-4)$
     \item  Startując od przypadku podstawowego $F(1) = F(2) = F(4) = 0$i $F(3) = 1$
     \item  Wówczas $F(i) = 0 \iff \text{i jest 1 lub parzyste} $  
@@ -267,7 +308,7 @@ u_{0} = 0
 \end{frame}
 
 \begin{frame}{Przykłąd}
-Problem 1 jestznany jako problem Skolema 
+Problem 1 jest znany jako problem Skolema 
     $\left\{n \in \mathbb{N}: u_{n}=0\right\}$
 \end{frame}
     
@@ -275,27 +316,30 @@ Problem 1 jestznany jako problem Skolema
     $u_{n}=p_{1}(n) \gamma_{1}^{n}+\ldots+p_{k}(n) \gamma_{k}^{n}$
     $p_{1}, \ldots, p_{k} \in \mathbb{C}[x]$
 \end{frame}
+
+\begin{frame}{Liczba algebraiczna}
+    
+\end{frame}
+
+\begin{frame}{Masser }
+    Niech $\lambda = (\lambda_1, \ldots, \lambda_s)$ będzie krotką liczb algebraicznych. 
+    Zdefiniujmy grupę multiplikatywną 
+    $$ L(\lambda) = \{(v_1, \ldots, v_s)\} $$
+\end{frame}
     
 \begin{frame}{Ultimate Positivity Problem}
-    Własnośc stopu dla programu
+    Własność stopu dla programu
     
 \end{frame}
 
 
 
-\begin{frame}{Skolem problem}
-    Czy dane liniowe rekurencyjne ma zero. 
-    $u_n = 0$ dla pewnego $n$?
-    \begin{itemize}
-        \item Itnieje algorytm pozwalający sprawdzić, czy istnieje nieskończona ilość zer, a jeśli tak, to znaleźć rozkład tych zer na zbiory okresowe, gwarantoweane przez twierdzenie Skolema-Mahlera-Lecha. 
-        \item Nie wiadomo jednak, czy istnieje algorytm pozwalający okreslić, czy sekwencja rekurencyjna ma jakieś nieperidoczyne zera. 
-    \end{itemize}
-\end{frame}
 
 
-\begin{frame}{Frame Title}
-    $$\lim _{n \rightarrow \infty} \frac{\left|P_{a, b} \cap\{1, \ldots, n\}\right|}{|P \cap\{1, \ldots, n\}|}=\frac{1}{\varphi(b)}$$
+\begin{frame}{Algorytm dla Ultimate Positivity}
+    
 \end{frame}
+
 
 \begin{frame}
 
