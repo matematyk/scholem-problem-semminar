@@ -20,11 +20,13 @@
 \usepackage{xspace}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\def\Z{\mathbb Z}
+\def\Q{\mathbb{Q}}
 
 \usepackage{listings}
 \usepackage{ bbold }
-
-
 
 \hypersetup{
     colorlinks=true,
@@ -34,7 +36,7 @@
 }
 
 %Information to be included in the title page:
-\title{Sholem Problem- Lato proseminar}
+\title{Problem Skolema- LATO proseminar}
 \author{Marcin Wierzbiński}
 \institute{MIMUW}
 \date{\today}
@@ -52,61 +54,85 @@
 
 \begin{frame}{Motywacja}
 \begin{itemize}
-    \item Szkic dowodu Twierdzenia Skolem-Mahler-Lech
-    \item Problem jeszcze nie rozwiązany
+    \item Twierdzenie Skolema dla  $2$
+    \item Problem Skolema
+    \item 
 \end{itemize}
 \end{frame}
 % tlumaczenie dlaczego to nie jest wykonywalna na maszynie
-    
+
 \begin{frame}{Zacznijmy od prostego}
     Input: 
-    $$\vec{x} := \vec{a}, \vec{a} \in Z^{k}$$
-    $$\text{while } u^{T}\cdot x != 0 do$$
-    $$ \vec{x} := M \vec{x}$$
+
+    \begin{algorithmic}[l]
+    \State $\vec{x} := \vec{a}$
+    \State $\vec{a} \in \Z^{k}$
+    \While { $u^{T}\cdot \vec{x} \neq 0$ }
+      \State $\vec{x} := M \vec{x}$
+      
+    \EndWhile
+    \end{algorithmic}
 
     Jestem zainteresowany problemem stopu dla tego problemu? To jest nieskończona pamięć, ponieważ $x$ może rosnąć bardzo dużo
     Czy jest rozstrzygalny ten program? To twierdzi inaczej?
-    
-    
+
+
 \end{frame}
-    
+
 \begin{frame}{Pytanie o inny warunek}
-        Zmieńmy warunek na inny 
-    $$\vec{x} := \vec{a}, \vec{a} \in Z^{k}$$
-    $$\text{while } u^{T}\cdot x \geq  0 do$$
-    $$ \vec{x} := M \vec{x}$$
-    
+    Zmieńmy warunek na inny 
+    \begin{algorithmic}[l]
+    \State $\vec{x} := \vec{a}$
+    \State $\vec{a} \in \Z^{k}$
+    \While { $u^{T}\cdot \vec{x} \geq 0$ }
+      \State $\vec{x} := M \vec{x}$
+      
+    \EndWhile
+    \end{algorithmic}
 \end{frame}    
 
 \begin{frame}{Inne pytanie z terminów automatów}
-    Mamy alfabet $\Sigma$ i A, B skończony deterministyczny lub nie-deterministyczny nad alfabetem $\Simga$
+    Mamy alfabet $\Sigma$  oraz A, B skończony automat deterministyczny lub nie-deterministyczny nad alfabetem $\Sigma$
     \begin{itemize}
         \item $u_n$ numer slów długości $n$ akceptowanych przez $A$
         \item  $v_n$ jest numerem slow długości $n$ akceptowanych przez automat $B$
-\begin{frame}{Zacznijmy od prostego}
-
 
     \end{itemize}
-    Question:
+    Pytanie:
     $\exist n = u_n = v_n$
     lub inne 
     $\forall v_n \leq u_n$
-    Ten problemy nie jest są znane jako rozstrzygalne i nie są nierozstrzygalne
+    Ten problemy nie jest są znane jako rozstyrzgalne i nie są nierostrzygalne
     I sa redukowane do problemu 1
-    Znana jest rozstrzygalność dla automatów rozmiaru $4$
-    
+    Znana jest rozstrzygalnosc dla automatow autoamtow rozmiaru $4$
+
+\end{frame}
+
+\begin{frame}{Równoważność pytania}
+    \begin{figure}
+        \centering
+        \includegraphics[width=40mm]{img/Zaznaczenie_079.png}
+        \caption{Automat skończony}
+        \label{fig:my_label}
+    \end{figure}
+    \begin{cases}
+        p_{n+1} = r_n + g_n \\
+        g_{n+1} = p_n + r_n \\ 
+        r_{n+1} = 2 p_n + q_n \\ 
+        (p_0, q_0, r_0) = (1,0,0) 
+    \end{cases}
 \end{frame}
 
 \begin{frame}{Liniowe równanie rekurencyjne}
     $$
         a_0, \ldots a_{k-1} \in \mathbb{Z} 
     $$
-    
+
     $$
         u_0, \ldots, u_{k-1} \in \mathbb{Z}
     $$
-    
-    
+
+
     Liniowe równanie rekurencyjne: 
     $$
     u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
@@ -132,14 +158,14 @@
 \begin{frame}{Zapis macierzowy}
     $$\exist v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k} $$
     $u_n = v^{t}M^{n}w$
-    
+
     $$
     M = \begin{bmatrix}
-    a_1 & 1 &  \ldots & 0 \\
-    a_2 & 0 & 1 & \ldots 0  \\
+    a_{k-1} & 1 &  \ldots & 0 \\
+    a_{k-2} & 0 & 1 & \ldots 0  \\
     \vdots & 0 & \ldots & 0 \\ 
-    a_{k-1} & 0 & \ldots & 1 \\
-    a_k & 0 & \ldots & 0
+    a_1 & 0 & \ldots & 1 \\
+    a_0 & 0 & \ldots & 0
     \end{bmatrix}
     $$
 \end{frame}
@@ -155,7 +181,7 @@
     Niech $v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k}$.
     Niech $u_n = v^{t}M^{n}w \in \mathbb{Z}$
     Wtedy $<u_n>$ jest liniowym równaniem rekurencyjnym. 
-        
+
 \end{theorem}
 
 
@@ -190,7 +216,7 @@ i pomnażam przez $M^{n}$ z lewej strony
     a_{k} & 0 & \ldots & 0
     \end{bmatrix}
     $$
-    
+
     $$v= \begin{bmatrix}
     u_{k-1} \\ u_{k-2} \\ \vdots \\ u_{0} \\
     \end{bmatrix}
@@ -227,56 +253,45 @@ u_{0} = 0
 \end{frame}
 
 \begin{frame}{Bogactwo innych przykładów}
-    \begin{equation}
-    \begin{cases}
-        u_0 = 0 \\
-        u_n = n
-    \end{cases}
-    \end{equation}
+Równanie rekurencyjne Fibonacciego: 
+$$
+{\displaystyle u_{n}={\frac {1}{\sqrt {5}}}\left({\frac {1+{\sqrt {5}}}{2}}\right)^{n}-{\frac {1}{\sqrt {5}}}\left({\frac {1-{\sqrt {5}}}{2}}\right)^{n}.}
+$$
 
+    $u_n = n$
     Jak zapisać za pomocą równania rekurencyjnego? 
-    \begin{equation}
-    \begin{cases}
-        u_n = n^{2} \\
-        u_0 = 0 \\
-        u_1 = 1 \\ 
-        u_2 = 4
-    \end{cases}
-    \end{equation}
+    $u_n = n^{2}$
 \end{frame}
 
 \begin{frame}{$u_n = n^{2}$}
     $u_{n+3} = 3 u_{n+2} - 3 u_{n+1} + u_{n} $
 \end{frame}
 
-\begin{frame}{Skolem problem}
-    Czy dane liniowe rekurencyjne ma zero. 
-    $u_n = 0$ dla pewnego $n$?
-    \begin{itemize}
-        \item Istnieje algorytm pozwalający sprawdzić, czy istnieje nieskończona ilość zer, a jeśli tak, to znaleźć rozkład tych zer na zbiory okresowe, gwarantowane przez twierdzenie Skolema-Mahlera-Lecha. 
-        \item Nie wiadomo jednak, czy istnieje algorytm pozwalający określić, czy sekwencja rekurencyjna ma jakieś nieperidyczne zera. 
-    \end{itemize}
+\begin{frame}{Problem Skolema dla równania rzędu 2}
+    $u_n$ jest równaniem rekurencyjnym liniowym rzędu 2
+    $$
+        u_n = c_1 u_{n+1} + c_2 u_n
+    $$
+    $$
+        c_1, c_2 \in \mathbb{Q}
+    $$
+    $$
+        u_0, u_1 \in \mathbb{Q}
+    $$
+    
+    $\exist n : u_n = 0 ?$
 \end{frame}
 
-\begin{frame}{Przestrzeń wektorowa równań lin. rekurencyjnych}
-    Rozważmy przestrzeń:
-    \begin{equation}
-
-    \{
-        \mathbb{Q^{w}} = 
-        \textit{wszystkie nieskończone szeregi o współczynnikach w } \mathbb{Q} 
-    \}
-            
-    \end{equation}
+\begin{frame}{Szkic dowodu}
     
-    
-    Z $$\forall \textlangle {x_n}, \sequence {y_n} \in R^{\N}: \sequence {x_n} \circ' \sequence {y_n} = \sequence {x_n \circ y_n}$$
-\end{frame}
-
-\begin{frame}{Skolem–Mahler–Lech }
-\begin{theorem}
-    Niech $<u_n>$ będzie równanie rekurencyjne linowe nad $\mathbb{Z}$. Wtedy zbiór zero $\{ n: u_n =0\}$ jest w postaci $F \cup (c_1 + N\times \mathbb{N}) \cup \ldots (c_n + N\times \mathbb{N}) $ gdzie $H$ jest zbiorem skończonym.  
-\end{theorem}
+    $$
+        x^{2} - c_1 x - c_2 = 0
+    $$
+    $$ 
+        \lambda_1, \lambda_2 \in \hat{\Q}
+    $$
+    rozpatrzymy pierwszy przykład:
+    $\lambda_1 \neq \lambda_2$
 \end{frame}
 
 \begin{frame}{Przykład:}
@@ -294,50 +309,43 @@ u_{0} = 0
 
 \begin{frame}{Dowód  SML}
     Niech $$u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}$$
-    
+
     Załóżmy, że $a_o \neq 0$, wówczas $\exist v, w, M$ takie, że 
     $u_n = u^{t} M^{n} w $ wszystko nad $\mathbb{Z}$
-    
+
     Wyznacznik $det(M) = \pm a_0 \neq 0$
     Wybierzmy liczbę pierwsza $p > 2$ t,że $p \nmid a_0$
 \end{frame}
 
 \begin{frame}{dowód c.d}
     Rozważmy $M_p \in \mathbb{F}_p^{k\times k} $, $det(M_p) \neq 0$
-    Jest takich co najwayżej $p^{k^{2}}$
+    Jest takich co najwyżej $p^{k^{2}}$
 \end{frame}
 
 \begin{frame}{Przykłąd}
 Problem 1 jest znany jako problem Skolema 
     $\left\{n \in \mathbb{N}: u_{n}=0\right\}$
 \end{frame}
-    
+
 \begin{frame}{Wielomian charakterystyczny}
     $u_{n}=p_{1}(n) \gamma_{1}^{n}+\ldots+p_{k}(n) \gamma_{k}^{n}$
     $p_{1}, \ldots, p_{k} \in \mathbb{C}[x]$
 \end{frame}
 
-\begin{frame}{Liczba algebraiczna}
-    
-\end{frame}
-
-\begin{frame}{Masser }
-    Niech $\lambda = (\lambda_1, \ldots, \lambda_s)$ będzie krotką liczb algebraicznych. 
-    Zdefiniujmy grupę multiplikatywną 
-    $$ L(\lambda) = \{(v_1, \ldots, v_s)\} $$
-\end{frame}
-    
 \begin{frame}{Ultimate Positivity Problem}
-    Własność stopu dla programu
-    
+    Własnośc stopu dla programu
+
 \end{frame}
 
 
 
-
-
-\begin{frame}{Algorytm dla Ultimate Positivity}
-    
+\begin{frame}{Skolem problem}
+    Czy dane liniowe rekurencyjne ma zero. 
+    $u_n = 0$ dla pewnego $n$?
+    \begin{itemize}
+        \item Istnieje algorytm pozwalający sprawdzić, czy istnieje nieskończona ilość zer, a jeśli tak, to znaleźć rozkład tych zer na zbiory okresowe, gwarantowane przez twierdzenie Skolema-Mahlera-Lecha. 
+        \item Nie wiadomo jednak, czy istnieje algorytm pozwalający określić, czy sekwencja rekurencyjna ma jakieś nieperidoczyne zera. 
+    \end{itemize}
 \end{frame}
 
 
