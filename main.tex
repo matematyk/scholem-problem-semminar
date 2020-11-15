@@ -46,7 +46,8 @@
 \newtheorem*{definicja}{Definicja}
 \newtheorem*{twierdzenie}{Twierdzenie}
 \newtheorem*{uwaga}{Uwaga}
-
+\newtheorem*{lemma}{Lemat}
+\newtheorem*{przyklad}{Przykład}
 
 
 \begin{document}
@@ -55,40 +56,48 @@
 \begin{frame}{Motywacja}
 \begin{itemize}
     \item Twierdzenie Skolema dla  $2$
-    \item Problem Skolema
-    \item 
+    \item Problem Skolema i teoria automatów
+    \item Terrence Tao
 \end{itemize}
 \end{frame}
 % tlumaczenie dlaczego to nie jest wykonywalna na maszynie
 
-\begin{frame}{Zacznijmy od prostego}
-    Input: 
-
-    \begin{algorithmic}[l]
-    \State $\vec{x} := \vec{a}$
-    \State $\vec{a} \in \Z^{k}$
-    \While { $u^{T}\cdot \vec{x} \neq 0$ }
-      \State $\vec{x} := M \vec{x}$
-      
-    \EndWhile
-    \end{algorithmic}
-
-    Jestem zainteresowany problemem stopu dla tego problemu? To jest nieskończona pamięć, ponieważ $x$ może rosnąć bardzo dużo
-    Czy jest rozstrzygalny ten program? To twierdzi inaczej?
-
+\begin{frame}{Zacznijmy od prostego programu}
+    \begin{algorithm}[H] 
+        \begin{algorithmic}[l]
+        \State $\vec{x} := \vec{a}, \quad \vec{a} \in \Z^{k}$  \algorithmiccomment{Wejście}
+        \While { $u^{T}\cdot \vec{x} \neq 0$ }
+          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{M \in \Z^{k \times k}}
+          
+        \EndWhile
+        \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{itemize}
+    \pause 
+    \item Jestem zainteresowany problemem stopu dla tego problemu? 
+    
+    
+    \item  Zakładamy nieskończona pamięć, ponieważ $\vec{x}$ może rosnąć bardzo szybko do nieskończoności, np przy $M=2$
+    \pause
+    
+    \item  Czy jest rozstrzygalny ten program? To twierdzi inaczej?
+    \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Pytanie o inny warunek}
     Zmieńmy warunek na inny 
-    \begin{algorithmic}[l]
-    \State $\vec{x} := \vec{a}$
-    \State $\vec{a} \in \Z^{k}$
-    \While { $u^{T}\cdot \vec{x} \geq 0$ }
-      \State $\vec{x} := M \vec{x}$
-      
-    \EndWhile
-    \end{algorithmic}
+    \begin{algorithm}[H] 
+        \begin{algorithmic}[l]
+        \State $\vec{x} := \vec{a},  \quad \vec{a} \in \Z^{k}$  \algorithmiccomment{Wejście}
+
+        \While { $u^{T}\cdot \vec{x} \geq 0$ }
+          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{M \in \Z^{k \times k}}
+          
+        \EndWhile
+        \end{algorithmic}
+    \end{algorithm}
 \end{frame}    
 
 \begin{frame}{Inne pytanie z terminów automatów}
@@ -112,7 +121,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=40mm]{img/Zaznaczenie_079.png}
-        \caption{Automat skończony}
+        \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
         \label{fig:my_label}
     \end{figure}
     \begin{cases}
@@ -121,6 +130,17 @@
         r_{n+1} = 2 p_n + q_n \\ 
         (p_0, q_0, r_0) = (1,0,0) 
     \end{cases}
+\end{frame}
+
+\begin{frame}{Macierz przejścia dla automatu}
+    $$
+    (p_{n+1}, q_{n+1}, r_{n+1}) 
+    = (p_{n},q_{n},r_{n}) \begin{bmatrix}
+    0 & 1 & 2 \\
+    1 & 0 & 1 \\
+    1 & 1 & 0
+    \end{bmatrix}
+    $$
 \end{frame}
 
 \begin{frame}{Liniowe równanie rekurencyjne}
@@ -168,6 +188,86 @@
     a_0 & 0 & \ldots & 0
     \end{bmatrix}
     $$
+\end{frame}
+
+\begin{frame}{Równanie fib:}
+\begin{equation*}
+\begin{cases}
+u_{n+2} = u_{n+1} + u_n \\
+u_{2} = 1 \\
+u_{1} = 1 \\
+u_{0} = 0 
+\end{cases}
+\end{equation*}
+\begin{equation*}
+        \begin{bmatrix}
+        u_{n+2} & u_{n+1} \\
+        u_{n+1} & u_{n} 
+        \end{bmatrix} 
+        \cdot
+        \begin{bmatrix}
+        1 & 1\\
+        1 & 0
+        \end{bmatrix}
+        = 
+        \begin{bmatrix}
+        u_{n+3} & u_{n+2}\\
+        u_{n+2} & u_{n+1}
+        \end{bmatrix}
+\end{equation*}
+Ponieważ równocześnie:
+\begin{equation*}
+    \begin{bmatrix}
+    1 & 1 \\
+    1 & 0 
+    \end{bmatrix}= 
+    \begin{bmatrix}
+    u_2 & u_1 \\
+    u_1 & u_0
+    
+    \end{bmatrix}
+\end{equation*}
+to indukcyjnie: 
+\begin{table}[]
+    \centering
+    \begin{tabular}{c|c}
+       \begin{equation*}
+    
+        \begin{bmatrix}
+        1 & 1\\
+        1 & 0
+        \end{bmatrix}^n
+        = 
+        \begin{bmatrix}
+        u_{n+1} & u_n\\
+        u_{n} & u_{n-1}
+        \end{bmatrix}
+
+    \end{equation*}
+&  
+       \begin{equation*}
+        \begin{bmatrix}
+        u_{n+1} \\
+        u_{n}
+        \end{bmatrix}
+        = 
+        \begin{bmatrix}
+        1 & 1\\
+        1 & 0
+        \end{bmatrix}^n
+        \begin{bmatrix}
+        u_1 \\
+        u_0 
+        \end{bmatrix}
+
+    \end{equation*}
+
+    \end{tabular}
+\end{table}
+
+lub w notacji wektorowej:
+
+
 \end{frame}
 
 \begin{frame}{Lemat redukcji}
@@ -231,44 +331,44 @@ i pomnażam przez $M^{n}$ z lewej strony
 \end{proof}
 \end{frame}
 
-\begin{frame}{Równanie fib:}
 
-\begin{equation*}
-\begin{cases}
-u_{n+2} = u_{n+1} + u_n \\
-u_{1} = 1
-u_{0} = 0
-\end{cases}
-\end{equation*}
 
-        \begin{bmatrix}
-        1 & 1\\
-        1 & 0
-        \end{bmatrix}^n
-        = 
-        \begin{bmatrix}
-        u_{n+1} & u_n\\
-        u_{n} & u_{n-1}
-        \end{bmatrix}
-\end{frame}
-
-\begin{frame}{Bogactwo innych przykładów}
+\begin{frame}{Równania rekurencyjne}
 Równanie rekurencyjne Fibonacciego: 
 $$
 {\displaystyle u_{n}={\frac {1}{\sqrt {5}}}\left({\frac {1+{\sqrt {5}}}{2}}\right)^{n}-{\frac {1}{\sqrt {5}}}\left({\frac {1-{\sqrt {5}}}{2}}\right)^{n}.}
 $$
+ Jak zapisać za pomocą równania rekurencyjnego? 
+\begin{itemize}
+    \item  $u_n = n$
+    \pause 
+    \item $u_n = u_{n-1} + 1$
+    \pause
+    \item  $u_n = n^{2}$
+    \pause
+    \item $u_n = 3 u_{n+2} - 3u_{n+1} + u_n$
 
-    $u_n = n$
-    Jak zapisać za pomocą równania rekurencyjnego? 
-    $u_n = n^{2}$
+\end{itemize}
+
 \end{frame}
 
-\begin{frame}{$u_n = n^{2}$}
-    $u_{n+3} = 3 u_{n+2} - 3 u_{n+1} + u_{n} $
+\begin{frame}{Liczby algebraiczne}
+\begin{definicja}
+    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \mathbb{Z}[x]$. 
+\end{definicja}
+
+\begin{przyklad}
+    Liczba $\sqrt{2}$ jest liczbą algebraiczną wielomianu $p(x) = x^{2} - 2$
+\end{przyklad}
+
 \end{frame}
+
 
 \begin{frame}{Problem Skolema dla równania rzędu 2}
-    $u_n$ jest równaniem rekurencyjnym liniowym rzędu 2
+
+
+\begin{lemma}
+    Niech $u_n$ jest równaniem rekurencyjnym liniowym rzędu 2
     $$
         u_n = c_1 u_{n+1} + c_2 u_n
     $$
@@ -278,20 +378,25 @@ $$
     $$
         u_0, u_1 \in \mathbb{Q}
     $$
-    
-    $\exist n : u_n = 0 ?$
+    wówczas $\exists n : u_n = 0$
+\end{lemma}
+
 \end{frame}
 
-\begin{frame}{Szkic dowodu}
+\begin{frame}{$\lambda_1= \lambda_2$}
+    $u_n = 0 \iff $ $u_n = a_{1} n \lambda^{n} + b$
     
+\end{frame}
+
+\begin{frame}{Szkic dowodu $\lambda_1 \neq \lambda_2$}
+    Wówczas dla różnych $\lambda_1$ i $\lambda_2$. 
+    
+    Otrzymujemy wielomian charakterystyczny 
     $$
         x^{2} - c_1 x - c_2 = 0
     $$
-    $$ 
-        \lambda_1, \lambda_2 \in \hat{\Q}
-    $$
     rozpatrzymy pierwszy przykład:
-    $\lambda_1 \neq \lambda_2$
+    $|\lambda_1| > |\lambda_2|$
 \end{frame}
 
 \begin{frame}{Przykład:}
@@ -322,19 +427,10 @@ $$
     Jest takich co najwyżej $p^{k^{2}}$
 \end{frame}
 
-\begin{frame}{Przykłąd}
-Problem 1 jest znany jako problem Skolema 
-    $\left\{n \in \mathbb{N}: u_{n}=0\right\}$
-\end{frame}
 
 \begin{frame}{Wielomian charakterystyczny}
     $u_{n}=p_{1}(n) \gamma_{1}^{n}+\ldots+p_{k}(n) \gamma_{k}^{n}$
     $p_{1}, \ldots, p_{k} \in \mathbb{C}[x]$
-\end{frame}
-
-\begin{frame}{Ultimate Positivity Problem}
-    Własnośc stopu dla programu
-
 \end{frame}
 
 
