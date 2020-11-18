@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[handout]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[polish]{babel}
@@ -8,7 +8,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{mathabx}
-\usepackage{physics}
 \usepackage{array}             
 \usepackage{dsfont}
 \usepackage{url}
@@ -24,6 +23,7 @@
 \usepackage[noend]{algpseudocode}
 \def\Z{\mathbb Z}
 \def\Q{\mathbb{Q}}
+\def\A{\mathbb{A}}
 
 \usepackage{listings}
 \usepackage{ bbold }
@@ -36,7 +36,7 @@
 }
 
 %Information to be included in the title page:
-\title{Problem Skolema- LATO proseminar}
+\title{Problem Skolema -- LATO proseminar}
 \author{Marcin Wierzbiński}
 \institute{MIMUW}
 \date{\today}
@@ -46,7 +46,7 @@
 \newtheorem*{definicja}{Definicja}
 \newtheorem*{twierdzenie}{Twierdzenie}
 \newtheorem*{uwaga}{Uwaga}
-\newtheorem*{lemma}{Lemat}
+\newtheorem*{lemat}{Lemat}
 \newtheorem*{przyklad}{Przykład}
 
 
@@ -55,9 +55,8 @@
 
 \begin{frame}{Motywacja}
 \begin{itemize}
-    \item Twierdzenie Skolema dla  $2$
+    \item Twierdzenie Skolema dla RLR rzędu $2$
     \item Problem Skolema i teoria automatów
-    \item Terrence Tao
 \end{itemize}
 \end{frame}
 % tlumaczenie dlaczego to nie jest wykonywalna na maszynie
@@ -67,7 +66,7 @@
         \begin{algorithmic}[l]
         \State $\vec{x} := \vec{a}, \quad \vec{a} \in \Z^{k}$  \algorithmiccomment{Wejście}
         \While { $u^{T}\cdot \vec{x} \neq 0$ }
-          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{M \in \Z^{k \times k}}
+          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{$M \in \Z^{k \times k}$}
           
         \EndWhile
         \end{algorithmic}
@@ -81,7 +80,7 @@
     \item  Zakładamy nieskończona pamięć, ponieważ $\vec{x}$ może rosnąć bardzo szybko do nieskończoności, np przy $M=2$
     \pause
     
-    \item  Czy jest rozstrzygalny ten program? To twierdzi inaczej?
+    \item  Czy jest rozstrzygalny ten program? Kto twierdzi inaczej?
     \end{itemize}
 
 \end{frame}
@@ -93,7 +92,7 @@
         \State $\vec{x} := \vec{a},  \quad \vec{a} \in \Z^{k}$  \algorithmiccomment{Wejście}
 
         \While { $u^{T}\cdot \vec{x} \geq 0$ }
-          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{M \in \Z^{k \times k}}
+          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{$M \in \Z^{k \times k}$}
           
         \EndWhile
         \end{algorithmic}
@@ -101,23 +100,24 @@
 \end{frame}    
 
 \begin{frame}{Inne pytanie z terminów automatów}
-    Mamy alfabet $\Sigma$  oraz A, B skończony automat deterministyczny lub nie-deterministyczny nad alfabetem $\Sigma$
+    Mamy alfabet $\Sigma$  oraz A, B skończony automat deterministyczny nad alfabetem $\Sigma$
     \begin{itemize}
-        \item $u_n$ numer slów długości $n$ akceptowanych przez $A$
-        \item  $v_n$ jest numerem slow długości $n$ akceptowanych przez automat $B$
+        \item $u_n$ jest numerem słów długości $n$ akceptowanych przez $A$
+        \item  $v_n$ jest numerem slow długości $n$ akceptowanych przez $B$
 
     \end{itemize}
     Pytanie:
-    $\exist n = u_n = v_n$
-    lub inne 
-    $\forall v_n \leq u_n$
-    Ten problemy nie jest są znane jako rozstyrzgalne i nie są nierostrzygalne
-    I sa redukowane do problemu 1
-    Znana jest rozstrzygalnosc dla automatow autoamtow rozmiaru $4$
+    Czy istnieje $n$ takie, że ilość słów akceptowanych przez $A$ jest równa ilości słów akceptowanych przez $B$ 
+    \begin{itemize}
+        \item 
+    \end{itemize}
+    Ten problem nie jest są znane jako rozstrzygalne i nie są nierostrzygalne
+    I są redukowane do problemu 1
+    Znana jest rozstrzygalność dla automatów rozmiaru $4$
 
 \end{frame}
 
-\begin{frame}{Równoważność pytania}
+\begin{frame}{Równoważność pytania -- przykład}
     \begin{figure}
         \centering
         \includegraphics[width=40mm]{img/Zaznaczenie_079.png}
@@ -133,6 +133,12 @@
 \end{frame}
 
 \begin{frame}{Macierz przejścia dla automatu}
+\begin{figure}
+    \centering
+    \includegraphics[width=40mm]{img/Zaznaczenie_079.png}
+    \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
+    \label{fig:my_label}
+\end{figure}
     $$
     (p_{n+1}, q_{n+1}, r_{n+1}) 
     = (p_{n},q_{n},r_{n}) \begin{bmatrix}
@@ -157,12 +163,59 @@
     $$
     u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
     $$
-    Zwykłe oznaczenie $<u_n>_{n=1}^{\infty}$
+    Zwykłe oznaczenie $\large u_n \rarge _{n=1}^{\infty}$
     $a_0 \neq 0$
 \end{frame}
 
+
+\begin{frame}{Równoważność pytania -- przykład}
+Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
+    \begin{equation*}
+        f_{n} = [1,0] \begin{bmatrix}
+            1 & 1 \\
+            0 & 1 
+        \end{bmatrix}^{n}
+        \begin{bmatrix}
+            1 & 0
+        \end{bmatrix}
+    \end{equation*}
+    \begin{equation*}
+         g_{n} = [2,5] \begin{bmatrix}
+            3 & 2 \\
+            0 & -1 
+        \end{bmatrix}^{n}
+        \begin{bmatrix}
+            2 & -1
+        \end{bmatrix}
+    \end{equation*}
+    
+    \begin{align*}
+        u_n = f_n - q_n && \text{jest ciągiem rekurencyjnym} 
+    \end{align*}
+    $$
+        f_n - g_n = [1,0|2,5] 
+        \left[
+        \begin{array}{cc|cc}
+        1 & 1 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        \hline
+        0 & 0 & 3 & 2 \\
+        0 & 0 & 0 & -1
+        \end{array}
+        \right]
+        \begin{bmatrix}
+            1  \\
+            0  \\
+            \hline
+            -2 \\
+            -1 
+        \end{bmatrix}
+    $$
+    
+\end{frame}
+
 \begin{frame}
-    Przykad:
+    Przykład:
     Równanie Fibonacciego:
    \begin{equation*}
         \begin{cases}
@@ -177,7 +230,7 @@
 
 \begin{frame}{Zapis macierzowy}
     $$\exist v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k} $$
-    $u_n = v^{t}M^{n}w$
+    $$u_n = v^{t}M^{n}w$$
 
     $$
     M = \begin{bmatrix}
@@ -190,11 +243,10 @@
     $$
 \end{frame}
 
-\begin{frame}{Równanie fib:}
+\begin{frame}{Równanie Fibonacciego:}
 \begin{equation*}
 \begin{cases}
 u_{n+2} = u_{n+1} + u_n \\
-u_{2} = 1 \\
 u_{1} = 1 \\
 u_{0} = 0 
 \end{cases}
@@ -265,8 +317,6 @@ to indukcyjnie:
     \end{tabular}
 \end{table}
 
-lub w notacji wektorowej:
-
 
 \end{frame}
 
@@ -276,38 +326,15 @@ lub w notacji wektorowej:
     Jeśli $p(t)$ jest wielomianem charakterystycznym dla macierzy $M$, wtedy macierz $p(M)$ jest macierzą zerową. 
 \end{theorem}
 
-\begin{theorem}
+\begin{twierdzenie}
 
-    Niech $v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k}$.
-    Niech $u_n = v^{t}M^{n}w \in \mathbb{Z}$
-    Wtedy $<u_n>$ jest liniowym równaniem rekurencyjnym. 
-
-\end{theorem}
-
-
-
-\begin{proof}
-    Weźmy $M$ wówczas z twierdzenia CH: 
-    $$M^{k} a_1 M^{k} + \ldots a_0 \mathbb{1}$$ 
-    może to równanie przez 
-    $$ v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots a_k v^{t} \mathbb{1}$$ 
-\end{proof}
-
-\end{frame}
-
-\begin{frame}{lemat c.d}
-i pomnażam przez $M^{n}$ z lewej strony 
-      $$ v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots a_k v^{t} \mathbb{1} M^{n}$$ 
-      i pomnażam 
-      $$ v^{t}M^{k} M^{n} w = a_1 v^{t} M^{k-1} M^{n}w + \ldots a_k v^{t} M^{n}w $$ 
-      co daję tezę
-\end{frame}
-
-\begin{frame}{Lemat w drugą stronę}
-\begin{theorem}
-    Niech $<u_n>$ bedzie równaniem lin. rekurencyjnym z początkowymi zmiennymi $u_0, \ldots u_{k-1}$. 
-    Niech
-    $$
+    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$.
+    Niech $u_n = v^{t}M^{n}w \in \Z$
+        Niech
+    \begin{table}[]
+        \centering
+        \begin{tabular}{c|c}
+    $
     M = \begin{bmatrix}
     a_{1} & 1 &  \ldots & 0 \\
     a_{2} & 0 & 1 & \ldots 0  \\
@@ -315,17 +342,45 @@ i pomnażam przez $M^{n}$ z lewej strony
     a_{k-1} & 0 & \ldots & 1 \\
     a_{k} & 0 & \ldots & 0
     \end{bmatrix}
-    $$
-
-    $$v= \begin{bmatrix}
+    $
+             &  
+    $v= \begin{bmatrix}
     u_{k-1} \\ u_{k-2} \\ \vdots \\ u_{0} \\
     \end{bmatrix}
     w =  \begin{bmatrix}
     0 \\ 0 \\ \vdots \\ 1 \\
     \end{bmatrix}
-    $$
-    pokaż, że $u_n = v^{t} M^{n} w$
-\end{theorem}
+    $
+             & 
+        \end{tabular}
+
+    \end{table}
+    
+    Wtedy i tylko wtedy $\<u_n\>$ jest liniowym równaniem rekurencyjnym. 
+
+\end{twierdzenie}
+
+\end{frame}
+
+\begin{frame}{lemat c.d}
+
+\begin{proof}
+    Weźmy $M$ wówczas z twierdzenia CH: 
+    $$M^{k} a_1 M^{k} + \ldots a_0 \mathbb{1}$$ 
+    może to równanie przez 
+    $$ v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots a_k v^{t} \mathbb{1}$$ 
+
+
+i domnażam przez $M^{n}$ z lewej strony 
+      $$ v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots a_k v^{t} \mathbb{1} M^{n}$$ 
+      i pomnażam 
+      $$ v^{t}M^{k} M^{n} w = a_1 v^{t} M^{k-1} M^{n}w + \ldots a_k v^{t} M^{n}w $$ 
+      co daję tezę
+\end{proof}
+\end{frame}
+
+\begin{frame}{Lemat w drugą stronę}
+
 \begin{proof}
     Przez indukcje
 \end{proof}
@@ -352,9 +407,45 @@ $$
 
 \end{frame}
 
+\begin{frame}{Dekompozycja dla Fibonacciego}
+    \begin{equation*}
+        \begin{bmatrix}
+        u_{n+1} \\
+        u_{n}
+        \end{bmatrix}
+        = 
+        \begin{bmatrix}
+        1 & 1\\
+        1 & 0
+        \end{bmatrix}^n
+        \begin{bmatrix}
+        u_1 \\
+        u_0 
+        \end{bmatrix}
+
+    \end{equation*}
+    Liczymy rozkład $M = PDP^{-1}$ i uzyskujemy $\lambda_1 =  \frac{1}{2} \left(1-\sqrt{5}\right), \lambda_2 = \frac{1}{2} \left(1-\sqrt{5}\right) $
+\begin{equation*}
+    \small u_n = v
+        \begin{bmatrix}
+            \frac{1}{2} \left(1-\sqrt{5}\right) & \frac{1}{2} \left(1+\sqrt{5}\right) \\
+         1 & 1 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+           \lambda_1^{n} & 0 \\
+            0 & \lambda_2^{n}
+        \end{bmatrix}
+        \begin{bmatrix}
+            \frac{1}{2} \left(1-\sqrt{5}\right) & 0 \\
+            0 & \frac{1}{2} \left(1+\sqrt{5}\right) \\
+        \end{bmatrix} w
+
+    \end{equation*}
+\end{frame}
+
 \begin{frame}{Liczby algebraiczne}
 \begin{definicja}
-    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \mathbb{Z}[x]$. 
+    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \Q[x]$. 
 \end{definicja}
 
 \begin{przyklad}
@@ -367,7 +458,7 @@ $$
 \begin{frame}{Problem Skolema dla równania rzędu 2}
 
 
-\begin{lemma}
+\begin{twierdzenie}
     Niech $u_n$ jest równaniem rekurencyjnym liniowym rzędu 2
     $$
         u_n = c_1 u_{n+1} + c_2 u_n
@@ -379,69 +470,112 @@ $$
         u_0, u_1 \in \mathbb{Q}
     $$
     wówczas $\exists n : u_n = 0$
-\end{lemma}
+\end{twierdzenie}
 
 \end{frame}
 
 \begin{frame}{$\lambda_1= \lambda_2$}
-    $u_n = 0 \iff $ $u_n = a_{1} n \lambda^{n} + b$
+
+\begin{proof}
+    $$u_n = 0 \iff  u_n = a n \lambda^{n} + b \lambda^{n} = 0$$
+    
+    $$ a n \lambda^{n} + b \lambda^{n} = 0 $$
+    $$ a n + b = 0 $$
+    Rozwiązywalne dla $a, b \in \A \cap \Q $
+\end{proof}
+
     
 \end{frame}
 
 \begin{frame}{Szkic dowodu $\lambda_1 \neq \lambda_2$}
-    Wówczas dla różnych $\lambda_1$ i $\lambda_2$. 
+    rozpatrzymy przypadek:
+    $|\lambda_1| > |\lambda_2|, \lambda_1, \lambda_2 \in \mathbb{R}$
     
     Otrzymujemy wielomian charakterystyczny 
     $$
-        x^{2} - c_1 x - c_2 = 0
+       a_1 \lambda^{n} = - a_2 \lambda^{n}
     $$
-    rozpatrzymy pierwszy przykład:
-    $|\lambda_1| > |\lambda_2|$
+    $$
+        - \frac{a_1}{a_2} = (\frac{\lambda_2}{\lambda_1})^{n}
+    $$
+    Poniżej pewnego $n$ nie ma szans na równość $\frac{\lambda_2}{\lambda_1}$
 \end{frame}
 
-\begin{frame}{Przykład:}
-\begin{itemize}
-   \item  Rozważmy ciąg: 
-   \item  $$ 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 5, 0, 8, 0, ...$$
-    \item      Zauważmy szereg Fibonacciego pomiędzy zerami. 
-    \item  Zdefiniowany takim wzorem:
-    \item  $F(i) = F(i-2) + F(i-4)$
-    \item  Startując od przypadku podstawowego $F(1) = F(2) = F(4) = 0$i $F(3) = 1$
-    \item  Wówczas $F(i) = 0 \iff \text{i jest 1 lub parzyste} $  
-    \item pozycje na którym mamy zero możemy podzielić na singleton ${1}$ zbiór skończony i ciąg pełnie arytmetyczny ciąg parzystych liczb. 
-\end{itemize}
+\begin{frame}{$|\lambda_1| = |\lambda_2|$}
+
+\begin{equation*}
+    u_n = a \lambda^{n} + \overline{a} \overline{\lambda}^{n} 
+\end{equation*}
+\pause 
+\begin{equation*}
+    u_n = 0 
+\end{equation*}
+\pause 
+\begin{equation*}
+    a \lambda^{n} + \overline{a} \overline{\lambda}^{n} = 0 \iff Re(a {\lambda^{n}}) = 0 
+\end{equation*} 
+\pause
+Weźmy: 
+\begin{align*}
+    v = \frac{\lambda}{|\lambda|} && |v| = 1
+\end{align*}
+$$\frac{u_n}{|\lambda|^{n}} = 0 \iff u_n = 0$$
+
+\end{frame}
+    
+\begin{frame}{$|\lambda_1| = |\lambda_2|$}
+\begin{table}[]
+    \centering
+    \begin{tabular}{c c}
+       \begin{figure}
+            \centering
+            \includegraphics[width=40mm]{img/Zaznaczenie_081.png}
+        \end{figure}  & 
+            $\frac{u_n}{|\lambda|^n} = a v^{n} + \overline{a} \overline{v} ^{n} $
+ 
+    \end{tabular}
+\end{table}
+
+\begin{equation*}
+    a v^{n} \quad  \text{zanika na osi urojonej} \iff u_n = 0 \iff 
+\end{equation*}
+\begin{align*}
+    v^{n} = \frac{i c}{a} && \text{gdzie} \quad |\frac{c}{a}| = 1
+\end{align*}
+\begin{align*}
+    v^{n} = \beta && \text{gdzie $\beta$ jest pewną liczbą algebraiczną o module 1}
+\end{align*}
+\pause
+Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
+
 \end{frame}
 
-\begin{frame}{Dowód  SML}
-    Niech $$u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}$$
-
-    Załóżmy, że $a_o \neq 0$, wówczas $\exist v, w, M$ takie, że 
-    $u_n = u^{t} M^{n} w $ wszystko nad $\mathbb{Z}$
-
-    Wyznacznik $det(M) = \pm a_0 \neq 0$
-    Wybierzmy liczbę pierwsza $p > 2$ t,że $p \nmid a_0$
-\end{frame}
-
-\begin{frame}{dowód c.d}
-    Rozważmy $M_p \in \mathbb{F}_p^{k\times k} $, $det(M_p) \neq 0$
-    Jest takich co najwyżej $p^{k^{2}}$
-\end{frame}
-
-
-\begin{frame}{Wielomian charakterystyczny}
-    $u_{n}=p_{1}(n) \gamma_{1}^{n}+\ldots+p_{k}(n) \gamma_{k}^{n}$
-    $p_{1}, \ldots, p_{k} \in \mathbb{C}[x]$
+\begin{frame}{Reprezentacja liczb algebraicznych }
+    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots x_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem  
+    \begin{figure}
+        \centering
+        \includegraphics[width=40mm]{img/Zaznaczenie_082.png}
+        \caption{Otoczenie liczby algebraicznej}
+        \label{fig:my_label}
+    \end{figure}
+    $$H(P) = \max \{ |a_0|, \ldots, |a_t| \}$$
+    \begin{twierdzenie}{Mignotte}
+            Jeśli $a,b \in \A$ są różnymi pierwiastkami wielomianu $p$ wtedy 
+            $|\alpha - \beta| > \frac{\sqrt{6}}{d^{\frac{d+1}{2}} H^{d-1}}$
+    \end{twierdzenie}
+    
 \end{frame}
 
 
+\begin{frame}{liczba całkowita algebraiczna}
+    \begin{definicja}
+        Liczbą \textbf{całkowitą algebraiczną} nazywamy pierwiastek wielomianu $p \in \Z[x]$ o współczynnikach całkowitych. Główny współczynnik wielomianu $p(x)$ jest równy 1. 
+    \end{definicja}
+    Wprowadźmy oznaczenie $O$ na pierścień liczb algebraicznych. Mamy pierścień z jednoznacznością rozkładu. 
+\end{frame}
 
-\begin{frame}{Skolem problem}
-    Czy dane liniowe rekurencyjne ma zero. 
-    $u_n = 0$ dla pewnego $n$?
-    \begin{itemize}
-        \item Istnieje algorytm pozwalający sprawdzić, czy istnieje nieskończona ilość zer, a jeśli tak, to znaleźć rozkład tych zer na zbiory okresowe, gwarantowane przez twierdzenie Skolema-Mahlera-Lecha. 
-        \item Nie wiadomo jednak, czy istnieje algorytm pozwalający określić, czy sekwencja rekurencyjna ma jakieś nieperidoczyne zera. 
-    \end{itemize}
+\begin{frame}{Frame Title}
+    
 \end{frame}
 
 
