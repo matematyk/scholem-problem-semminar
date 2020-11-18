@@ -50,6 +50,12 @@
 \newtheorem*{przyklad}{Przykład}
 
 
+\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3's }#1}
+\theoremstyle{named}
+\newtheorem*{namedtheorem}{Twierdzenie}
+
+
+
 \begin{document}
 \frame{\titlepage}
 
@@ -100,19 +106,19 @@
 \end{frame}    
 
 \begin{frame}{Inne pytanie z terminów automatów}
-    Mamy alfabet $\Sigma$  oraz A, B skończony automat deterministyczny nad alfabetem $\Sigma$
+    Mamy alfabet $\Sigma$  oraz A, B skończony automat deterministyczny nad $\Sigma$
     \begin{itemize}
         \item $u_n$ jest numerem słów długości $n$ akceptowanych przez $A$
         \item  $v_n$ jest numerem slow długości $n$ akceptowanych przez $B$
 
     \end{itemize}
     Pytanie:
-    Czy istnieje $n$ takie, że ilość słów akceptowanych przez $A$ jest równa ilości słów akceptowanych przez $B$ 
     \begin{itemize}
-        \item 
+        \item  Czy istnieje $n$ takie, że ilość słów akceptowanych przez $A$ jest równa ilości słów akceptowanych przez $B$ 
+        \item  Nie wiemy, czy ten problem jest rozstrzygalny ani nierozstrzygalny. 
     \end{itemize}
-    Ten problem nie jest są znane jako rozstrzygalne i nie są nierostrzygalne
-    I są redukowane do problemu 1
+    \pause
+    
     Znana jest rozstrzygalność dla automatów rozmiaru $4$
 
 \end{frame}
@@ -208,7 +214,7 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
             0  \\
             \hline
             -2 \\
-            -1 
+            1 
         \end{bmatrix}
     $$
     
@@ -322,15 +328,15 @@ to indukcyjnie:
 
 \begin{frame}{Lemat redukcji}
 
-\begin{theorem}{Cayley-Hamiltonian}
+\begin{namedtheorem}[Cayleya-Hamiltona]
     Jeśli $p(t)$ jest wielomianem charakterystycznym dla macierzy $M$, wtedy macierz $p(M)$ jest macierzą zerową. 
-\end{theorem}
+\end{namedtheorem}
 
 \begin{twierdzenie}
 
-    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$.
-    Niech $u_n = v^{t}M^{n}w \in \Z$
-        Niech
+    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$ oraz $u_n = v^{t}M^{n}w \in \Z$
+    
+    Niech
     \begin{table}[]
         \centering
         \begin{tabular}{c|c}
@@ -362,27 +368,40 @@ to indukcyjnie:
 
 \end{frame}
 
-\begin{frame}{lemat c.d}
+\begin{frame}{Twierdzenie c.d}
 
 \begin{proof}
     Weźmy $M$ wówczas z twierdzenia CH: 
-    $$M^{k} a_1 M^{k} + \ldots a_0 \mathbb{1}$$ 
+    \begin{equation}
+        M^{k} =  a_1 M^{k} + \ldots a_0 \mathbb{1} \
+    \end{equation}
     może to równanie przez 
-    $$ v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots a_k v^{t} \mathbb{1}$$ 
+    \begin{equation}
+        v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots a_k v^{t} \mathbb{1} 
+    \end{equation} 
 
 
 i domnażam przez $M^{n}$ z lewej strony 
-      $$ v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots a_k v^{t} \mathbb{1} M^{n}$$ 
+      \begin{equation}
+          v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots a_k v^{t} \mathbb{1} M^{n}
+      \end{equation}
       i pomnażam 
-      $$ v^{t}M^{k} M^{n} w = a_1 v^{t} M^{k-1} M^{n}w + \ldots a_k v^{t} M^{n}w $$ 
+      $$ v^{t}M^{k + n} w = a_1 v^{t} M^{k-1 + n}w + \ldots a_k v^{t} M^{n}w $$ 
       co daję tezę
 \end{proof}
 \end{frame}
 
-\begin{frame}{Lemat w drugą stronę}
-
+\begin{frame}{Twierdzenie w drugą stronę}
 \begin{proof}
-    Przez indukcje
+    Niech $<u_n>$ będzie równaniem liniowym rekurencyjnym z warunkiem początkowym:
+    $u_{n+k} = a_1 u_{n+k-1} + \ldots a_{k} u_{k}$
+    przez indukcje pokazuje się, że $u_{n} = v^{t}M^{n}w $
+    
+    Sprawdźmy bazę indukcyjną:
+    $n=0$
+    
+    wtedy $u_{0} = v^{t} \mathbb{1} w = u_0$
+    
 \end{proof}
 \end{frame}
 
@@ -426,21 +445,33 @@ $$
     \end{equation*}
     Liczymy rozkład $M = PDP^{-1}$ i uzyskujemy $\lambda_1 =  \frac{1}{2} \left(1-\sqrt{5}\right), \lambda_2 = \frac{1}{2} \left(1-\sqrt{5}\right) $
 \begin{equation*}
-    \small u_n = v
+    u_n = 
         \begin{bmatrix}
-            \frac{1}{2} \left(1-\sqrt{5}\right) & \frac{1}{2} \left(1+\sqrt{5}\right) \\
+           1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            \lambda_1 & \lambda_2 \\
          1 & 1 \\
         \end{bmatrix}
         \begin{bmatrix}
            \lambda_1^{n} & 0 \\
             0 & \lambda_2^{n}
         \end{bmatrix}
+        \frac{1}{\sqrt{5}}
         \begin{bmatrix}
-            \frac{1}{2} \left(1-\sqrt{5}\right) & 0 \\
-            0 & \frac{1}{2} \left(1+\sqrt{5}\right) \\
-        \end{bmatrix} w
-
+           1 & \lambda_2 \\
+           -1  & \lambda_1 \\
+        \end{bmatrix} 
+        \begin{bmatrix}
+           1 \\
+           0
+        \end{bmatrix}
     \end{equation*}
+    \begin{equation*}
+        u_n = \frac{\lambda_1^{n} - \lambda_2^{n}}{\sqrt{5}}
+    \end{equation*}
+ 
+ 
 \end{frame}
 
 \begin{frame}{Liczby algebraiczne}
@@ -451,6 +482,10 @@ $$
 \begin{przyklad}
     Liczba $\sqrt{2}$ jest liczbą algebraiczną wielomianu $p(x) = x^{2} - 2$
 \end{przyklad}
+
+\begin{definicja}
+    Stopniem liczby algebraicznej 
+\end{definicja}
 
 \end{frame}
 
@@ -559,7 +594,7 @@ Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
         \label{fig:my_label}
     \end{figure}
     $$H(P) = \max \{ |a_0|, \ldots, |a_t| \}$$
-    \begin{twierdzenie}{Mignotte}
+    \begin{twierdzenie}[Mignotte]
             Jeśli $a,b \in \A$ są różnymi pierwiastkami wielomianu $p$ wtedy 
             $|\alpha - \beta| > \frac{\sqrt{6}}{d^{\frac{d+1}{2}} H^{d-1}}$
     \end{twierdzenie}
