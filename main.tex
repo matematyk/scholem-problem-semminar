@@ -126,7 +126,7 @@
 \begin{frame}{Równoważność pytania -- przykład}
     \begin{figure}
         \centering
-        \includegraphics[width=40mm]{img/Zaznaczenie_079.png}
+        \includegraphics[width=40mm]{img/automat.png}
         \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
         \label{fig:my_label}
     \end{figure}
@@ -137,42 +137,6 @@
         (p_0, q_0, r_0) = (1,0,0) 
     \end{cases}
 \end{frame}
-
-\begin{frame}{Macierz przejścia dla automatu}
-\begin{figure}
-    \centering
-    \includegraphics[width=40mm]{img/Zaznaczenie_079.png}
-    \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
-    \label{fig:my_label}
-\end{figure}
-    $$
-    (p_{n+1}, q_{n+1}, r_{n+1}) 
-    = (p_{n},q_{n},r_{n}) \begin{bmatrix}
-    0 & 1 & 2 \\
-    1 & 0 & 1 \\
-    1 & 1 & 0
-    \end{bmatrix}
-    $$
-\end{frame}
-
-\begin{frame}{Liniowe równanie rekurencyjne}
-    $$
-        a_0, \ldots a_{k-1} \in \mathbb{Z} 
-    $$
-
-    $$
-        u_0, \ldots, u_{k-1} \in \mathbb{Z}
-    $$
-
-
-    Liniowe równanie rekurencyjne: 
-    $$
-    u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
-    $$
-    Zwykłe oznaczenie $\large u_n \rarge _{n=1}^{\infty}$
-    $a_0 \neq 0$
-\end{frame}
-
 
 \begin{frame}{Równoważność pytania -- przykład}
 Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
@@ -219,6 +183,44 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
     $$
     
 \end{frame}
+
+\begin{frame}{Macierz przejścia dla automatu}
+\begin{figure}
+    \centering
+    \includegraphics[width=40mm]{img/automat.png}
+    \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
+    \label{fig:my_label}
+\end{figure}
+    $$
+    (p_{n+1}, q_{n+1}, r_{n+1}) 
+    = (p_{n},q_{n},r_{n}) \begin{bmatrix}
+    0 & 1 & 2 \\
+    1 & 0 & 1 \\
+    1 & 1 & 0
+    \end{bmatrix}
+    $$
+\end{frame}
+
+\begin{frame}{Liniowe równanie rekurencyjne}
+    $$
+        a_0, \ldots a_{k-1} \in \mathbb{Z} 
+    $$
+
+    $$
+        u_0, \ldots, u_{k-1} \in \mathbb{Z}
+    $$
+
+
+    Liniowe równanie rekurencyjne: 
+    $$
+    u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
+    $$
+    Zwykłe oznaczenie $\textlangle u_n \textrangle _{n=1}^{\infty}$
+    $a_0 \neq 0$
+\end{frame}
+
+
+
 
 \begin{frame}
     Przykład:
@@ -393,7 +395,7 @@ i domnażam przez $M^{n}$ z lewej strony
 
 \begin{frame}{Twierdzenie w drugą stronę}
 \begin{proof}
-    Niech $<u_n>$ będzie równaniem liniowym rekurencyjnym z warunkiem początkowym:
+    Niech $\textlangle u_n \textrangle_{n=1}^{\infty}$ będzie równaniem liniowym rekurencyjnym z warunkiem początkowym:
     $u_{n+k} = a_1 u_{n+k-1} + \ldots a_{k} u_{k}$
     przez indukcje pokazuje się, że $u_{n} = v^{t}M^{n}w $
     
@@ -476,16 +478,12 @@ $$
 
 \begin{frame}{Liczby algebraiczne}
 \begin{definicja}
-    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \Q[x]$. 
+    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \Q[x]$. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$
 \end{definicja}
 
 \begin{przyklad}
     Liczba $\sqrt{2}$ jest liczbą algebraiczną wielomianu $p(x) = x^{2} - 2$
 \end{przyklad}
-
-\begin{definicja}
-    Stopniem liczby algebraicznej 
-\end{definicja}
 
 \end{frame}
 
@@ -602,24 +600,39 @@ Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
 \end{frame}
 
 
-\begin{frame}{liczba całkowita algebraiczna}
-    \begin{definicja}
-        Liczbą \textbf{całkowitą algebraiczną} nazywamy pierwiastek wielomianu $p \in \Z[x]$ o współczynnikach całkowitych. Główny współczynnik wielomianu $p(x)$ jest równy 1. 
-    \end{definicja}
-    Wprowadźmy oznaczenie $O$ na pierścień liczb algebraicznych. Mamy pierścień z jednoznacznością rozkładu. 
+%\begin{frame}{liczba całkowita algebraiczna}
+%    \begin{definicja}
+ %       Liczbą \textbf{całkowitą algebraiczną} nazywamy pierwiastek wielomianu $p \in \Z[x]$ o współczynnikach całkowitych. Główny współczynnik wielomianu $p(x)$ jest równy 1. 
+%    \end{definicja}
+%    Wprowadźmy oznaczenie $O$ na pierścień liczb algebraicznych. Mamy pierścień z jednoznacznością rozkładu. 
+%\end{frame}
+
+
+\begin{frame}{$\exists n: u_n = 0$ dla równania $\alpha^{n} = \beta$}
+Niech $a \in Z$
+\begin{equation}
+v_p(a)= 
+    \begin{cases}
+        0 \text{ \quad dla \quad } p \\
+        k \text{ \quad dla \quad } p^{k} | a  \text{\quad i \quad } a \nmid p^{k+1} \\
+        \infty \text{\quad dla \quad} a= 0
+    \end{cases}
+\end{equation}
+Własność:
+$v_p(\frac{a}{b}) = v_p(a) - v_p(b)$
+
+
+\[
+    v_{p}(\alpha^{n}) = v_p(\beta) 
+\]
+\[
+    n \cdot v_{p}(\alpha) = v_{p}(\beta)
+\]
+
+Poniżej pewnego $n$ nie ma szans na równość $\frac{\lambda_2}{\lambda_1}$
+
 \end{frame}
 
-\begin{frame}{Frame Title}
-    
-\end{frame}
 
-
-\begin{frame}
-
-
-\begin{itemize}
-    \item https://terrytao.wordpress.com/2007/05/25/open-question-effective-skolem-mahler-lech-theorem/
-\end{itemize}
-\end{frame}
 
 \end{document}
