@@ -36,7 +36,7 @@
 }
 
 %Information to be included in the title page:
-\title{Problem Skolema -- LATO proseminar}
+\title{Problem Skolema -- LATO}
 \author{Marcin Wierzbiński}
 \institute{MIMUW}
 \date{\today}
@@ -61,8 +61,10 @@
 
 \begin{frame}{Motywacja}
 \begin{itemize}
-    \item Twierdzenie Skolema dla RLR rzędu $2$
-    \item Problem Skolema i teoria automatów
+    \item Twierdzenie Skolema dla RLR rzędu $2$.
+    \item Problem Skolema i teoria automatów.
+    \item Redukcja RLR do postaci macierzowej.
+    \item Liczby algebraiczne -- reprezentacja.
 \end{itemize}
 \end{frame}
 % tlumaczenie dlaczego to nie jest wykonywalna na maszynie
@@ -80,36 +82,23 @@
     
     \begin{itemize}
     \pause 
-    \item Jestem zainteresowany problemem stopu dla tego problemu? 
+    \item Jestem zainteresowany problemem stopu dla tego programu? 
     
     
-    \item  Zakładamy nieskończona pamięć, ponieważ $\vec{x}$ może rosnąć bardzo szybko do nieskończoności, np przy $M=2$
+    \item  Zakładamy nieskończoną pamięć, ponieważ $\vec{x}$ może rosnąć bardzo szybko do nieskończoności, np. przy $M=2$.
     \pause
     
-    \item  Czy jest rozstrzygalny ten program? Kto twierdzi inaczej?
+    \item  Czy jest to problem rozstrzygalny?
     \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Pytanie o inny warunek}
-    Zmieńmy warunek na inny 
-    \begin{algorithm}[H] 
-        \begin{algorithmic}[l]
-        \State $\vec{x} := \vec{a},  \quad \vec{a} \in \Z^{k}$  \algorithmiccomment{Wejście}
-
-        \While { $u^{T}\cdot \vec{x} \geq 0$ }
-          \State $\vec{x} := M \vec{x}$ \algorithmiccomment{$M \in \Z^{k \times k}$}
-          
-        \EndWhile
-        \end{algorithmic}
-    \end{algorithm}
-\end{frame}    
 
 \begin{frame}{Inne pytanie z terminów automatów}
     Mamy alfabet $\Sigma$  oraz A, B skończony automat deterministyczny nad $\Sigma$
     \begin{itemize}
-        \item $u_n$ jest numerem słów długości $n$ akceptowanych przez $A$
-        \item  $v_n$ jest numerem slow długości $n$ akceptowanych przez $B$
+        \item $u_n$ jest liczbą słów długości $n$ akceptowanych przez $A$
+        \item  $v_n$ jest liczbą słów długości $n$ akceptowanych przez $B$
 
     \end{itemize}
     Pytanie:
@@ -136,6 +125,43 @@
         r_{n+1} = 2 p_n + q_n \\ 
         (p_0, q_0, r_0) = (1,0,0) 
     \end{cases}
+\end{frame}
+
+
+
+\begin{frame}{Macierz przejścia dla automatu}
+\begin{figure}
+    \centering
+    \includegraphics[width=40mm]{img/automat.png}
+    \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
+    \label{fig:my_label}
+\end{figure}
+    $$
+    (p_{n+1}, q_{n+1}, r_{n+1}) 
+    = (p_{n},q_{n},r_{n}) \begin{bmatrix}
+    0 & 1 & 2 \\
+    1 & 0 & 1 \\
+    1 & 1 & 0
+    \end{bmatrix}
+    $$
+\end{frame}
+
+\begin{frame}{Liniowe równanie rekurencyjne}
+    $$
+        a_0, \ldots a_{k-1} \in \mathbb{Z} 
+    $$
+
+    $$
+        u_0, \ldots, u_{k-1} \in \mathbb{Z}
+    $$
+
+
+    Liniowe równanie rekurencyjne: 
+    $$
+    u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
+    $$
+    Zwykłe oznaczenie $\textlangle u_n \textrangle _{n=1}^{\infty}$
+    $a_0 \neq 0$
 \end{frame}
 
 \begin{frame}{Równoważność pytania -- przykład}
@@ -184,43 +210,6 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
     
 \end{frame}
 
-\begin{frame}{Macierz przejścia dla automatu}
-\begin{figure}
-    \centering
-    \includegraphics[width=40mm]{img/automat.png}
-    \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
-    \label{fig:my_label}
-\end{figure}
-    $$
-    (p_{n+1}, q_{n+1}, r_{n+1}) 
-    = (p_{n},q_{n},r_{n}) \begin{bmatrix}
-    0 & 1 & 2 \\
-    1 & 0 & 1 \\
-    1 & 1 & 0
-    \end{bmatrix}
-    $$
-\end{frame}
-
-\begin{frame}{Liniowe równanie rekurencyjne}
-    $$
-        a_0, \ldots a_{k-1} \in \mathbb{Z} 
-    $$
-
-    $$
-        u_0, \ldots, u_{k-1} \in \mathbb{Z}
-    $$
-
-
-    Liniowe równanie rekurencyjne: 
-    $$
-    u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
-    $$
-    Zwykłe oznaczenie $\textlangle u_n \textrangle _{n=1}^{\infty}$
-    $a_0 \neq 0$
-\end{frame}
-
-
-
 
 \begin{frame}
     Przykład:
@@ -240,15 +229,16 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
     $$\exist v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k} $$
     $$u_n = v^{t}M^{n}w$$
 
-    $$
-    M = \begin{bmatrix}
-    a_{k-1} & 1 &  \ldots & 0 \\
-    a_{k-2} & 0 & 1 & \ldots 0  \\
-    \vdots & 0 & \ldots & 0 \\ 
-    a_1 & 0 & \ldots & 1 \\
-    a_0 & 0 & \ldots & 0
-    \end{bmatrix}
-    $$
+    \begin{equation*}
+    
+        M = \begin{bmatrix}
+        a_{k-1} & 1 & \ldots & 0 & 0 \\
+        a_{k-2} & 0 & \ldots & 0 & 0 \\
+        \vdots & 0 & \ldots & 0 & 0 \\ 
+        a_1 & 0 & \ldots & 1 & 0 \\
+        a_0 & 0 & \ldots & 0 & 1
+        \end{bmatrix}
+    \end{equation*}
 \end{frame}
 
 \begin{frame}{Równanie Fibonacciego:}
@@ -341,24 +331,24 @@ to indukcyjnie:
     Niech
     \begin{table}[]
         \centering
-        \begin{tabular}{c|c}
+        \begin{tabular}{c c}
     $
     M = \begin{bmatrix}
-    a_{1} & 1 &  \ldots & 0 \\
-    a_{2} & 0 & 1 & \ldots 0  \\
-    \vdots & 0 & \ldots & 0 \\ 
-    a_{k-1} & 0 & \ldots & 1 \\
-    a_{k} & 0 & \ldots & 0
+    a_{k-1} & 1 & \ldots & 0 & 0 \\
+    a_{k-2} & 0 & \ldots & 0 & 0 \\
+    \vdots & 0 & \ldots & 0 & 0 \\ 
+    a_1 & 0 & \ldots & 1 & 0 \\
+    a_0 & 0 & \ldots & 0 & 1
     \end{bmatrix}
     $
              &  
-    $v= \begin{bmatrix}
-    u_{k-1} \\ u_{k-2} \\ \vdots \\ u_{0} \\
-    \end{bmatrix}
-    w =  \begin{bmatrix}
-    0 \\ 0 \\ \vdots \\ 1 \\
-    \end{bmatrix}
-    $
+                $v= \begin{bmatrix}
+                u_{k-1} \\ u_{k-2} \\ \vdots \\ u_{0} \\
+                \end{bmatrix}
+                w =  \begin{bmatrix}
+                0 \\ 0 \\ \vdots \\ 1 \\
+                \end{bmatrix}
+                $
              & 
         \end{tabular}
 
@@ -377,7 +367,7 @@ to indukcyjnie:
     \begin{equation}
         M^{k} =  a_1 M^{k} + \ldots a_0 \mathbb{1} \
     \end{equation}
-    może to równanie przez 
+    mnożę to równanie przez 
     \begin{equation}
         v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots a_k v^{t} \mathbb{1} 
     \end{equation} 
@@ -393,7 +383,7 @@ i domnażam przez $M^{n}$ z lewej strony
 \end{proof}
 \end{frame}
 
-\begin{frame}{Twierdzenie w drugą stronę}
+\begin{frame}{W drugą stronę}
 \begin{proof}
     Niech $\textlangle u_n \textrangle_{n=1}^{\infty}$ będzie równaniem liniowym rekurencyjnym z warunkiem początkowym:
     $u_{n+k} = a_1 u_{n+k-1} + \ldots a_{k} u_{k}$
@@ -401,7 +391,6 @@ i domnażam przez $M^{n}$ z lewej strony
     
     Sprawdźmy bazę indukcyjną:
     $n=0$
-    
     wtedy $u_{0} = v^{t} \mathbb{1} w = u_0$
     
 \end{proof}
@@ -448,9 +437,6 @@ $$
     Liczymy rozkład $M = PDP^{-1}$ i uzyskujemy $\lambda_1 =  \frac{1}{2} \left(1-\sqrt{5}\right), \lambda_2 = \frac{1}{2} \left(1-\sqrt{5}\right) $
 \begin{equation*}
     u_n = 
-        \begin{bmatrix}
-           1 & 0
-        \end{bmatrix}
         \begin{bmatrix}
             \lambda_1 & \lambda_2 \\
          1 & 1 \\
@@ -521,7 +507,7 @@ $$
 \end{frame}
 
 \begin{frame}{Szkic dowodu $\lambda_1 \neq \lambda_2$}
-    rozpatrzymy przypadek:
+    BSO: 
     $|\lambda_1| > |\lambda_2|, \lambda_1, \lambda_2 \in \mathbb{R}$
     
     Otrzymujemy wielomian charakterystyczny 
@@ -584,16 +570,15 @@ Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
 \end{frame}
 
 \begin{frame}{Reprezentacja liczb algebraicznych }
-    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots x_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem  
+    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots a_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem, $d$ jest stopniem wielomianu.  
     \begin{figure}
         \centering
         \includegraphics[width=40mm]{img/Zaznaczenie_082.png}
         \caption{Otoczenie liczby algebraicznej}
-        \label{fig:my_label}
     \end{figure}
     $$H(P) = \max \{ |a_0|, \ldots, |a_t| \}$$
     \begin{twierdzenie}[Mignotte]
-            Jeśli $a,b \in \A$ są różnymi pierwiastkami wielomianu $p$ wtedy 
+            Jeśli $\alpha, \beta \in \A$ są różnymi pierwiastkami wielomianu $p$ wtedy 
             $|\alpha - \beta| > \frac{\sqrt{6}}{d^{\frac{d+1}{2}} H^{d-1}}$
     \end{twierdzenie}
     
