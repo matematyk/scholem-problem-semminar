@@ -61,10 +61,10 @@
 
 \begin{frame}{Motywacja}
 \begin{itemize}
-    \item Twierdzenie Skolema dla RLR rzędu $2$.
-    \item Problem Skolema i teoria automatów.
-    \item Redukcja RLR do postaci macierzowej.
-    \item Liczby algebraiczne -- reprezentacja.
+    \item Dlaczego problem równania rekurencyjnego liniowego jest na seminarium Lato? 
+    \item Co mają wspólnego równania rekurencyjne liniowe i macierze?
+    \item Jak trudny jest problem Skolema?  
+    \item Co mają wspólnego liczby algebraiczne z problemem Skolema? 
 \end{itemize}
 \end{frame}
 % tlumaczenie dlaczego to nie jest wykonywalna na maszynie
@@ -82,9 +82,8 @@
     
     \begin{itemize}
     \pause 
-    \item Jestem zainteresowany problemem stopu dla tego programu? 
-    
-    
+    \item Jestem zainteresowany problemem stopu dla tego programu
+    \pause 
     \item  Zakładamy nieskończoną pamięć, ponieważ $\vec{x}$ może rosnąć bardzo szybko do nieskończoności, np. przy $M=2$.
     \pause
     
@@ -103,8 +102,8 @@
     \end{itemize}
     Pytanie:
     \begin{itemize}
-        \item  Czy istnieje $n$ takie, że ilość słów akceptowanych przez $A$ jest równa ilości słów akceptowanych przez $B$ 
-        \item  Nie wiemy, czy ten problem jest rozstrzygalny ani nierozstrzygalny. 
+        \item  Czy istnieje $n$ takie, że ilość słów akceptowanych przez $A$ jest równa liczbie słów akceptowanych przez $B$ 
+        \item  Nie wiadomo, czy problem jest rozstrzygalny czy nierozstrzygalny. 
     \end{itemize}
     \pause
     
@@ -148,7 +147,7 @@
 
 \begin{frame}{Liniowe równanie rekurencyjne}
     $$
-        a_0, \ldots a_{k-1} \in \mathbb{Z} 
+        a_0, \ldots, a_{k-1} \in \mathbb{Z} 
     $$
 
     $$
@@ -213,7 +212,7 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
 
 \begin{frame}
     Przykład:
-    Równanie Fibonacciego:
+    Ciąg Fibonacciego:
    \begin{equation*}
         \begin{cases}
         u_{n+2} = u_{n+1} + u_n \\
@@ -221,7 +220,7 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
         u_{0} = 0
         \end{cases}
     \end{equation*}
-    Jest bliska styczność z przykładami wyżej. 
+    Występuje podobieństwo z wcześniej podanymi przykładami. 
 
 \end{frame}
 
@@ -234,14 +233,14 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
         M = \begin{bmatrix}
         a_{k-1} & 1 & \ldots & 0 & 0 \\
         a_{k-2} & 0 & \ldots & 0 & 0 \\
-        \vdots & 0 & \ldots & 0 & 0 \\ 
-        a_1 & 0 & \ldots & 1 & 0 \\
-        a_0 & 0 & \ldots & 0 & 1
+        \vdots & 0 & \ldots & 1 & 0 \\ 
+        a_1 & 0 & \ldots & 0 & 1 \\
+        a_0 & 0 & \ldots & 0 & 0
         \end{bmatrix}
     \end{equation*}
 \end{frame}
 
-\begin{frame}{Równanie Fibonacciego:}
+\begin{frame}{Ciąg Fibonacciego:}
 \begin{equation*}
 \begin{cases}
 u_{n+2} = u_{n+1} + u_n \\
@@ -305,6 +304,7 @@ to indukcyjnie:
         1 & 1\\
         1 & 0
         \end{bmatrix}^n
+        \cdot
         \begin{bmatrix}
         u_1 \\
         u_0 
@@ -324,22 +324,21 @@ to indukcyjnie:
     Jeśli $p(t)$ jest wielomianem charakterystycznym dla macierzy $M$, wtedy macierz $p(M)$ jest macierzą zerową. 
 \end{namedtheorem}
 
+\pause
 \begin{twierdzenie}
 
-    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$ oraz $u_n = v^{t}M^{n}w \in \Z$
-    
-    Niech
+    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$,  $u_n = v^{t}M^{n}w \in \Z$ oraz
     \begin{table}[]
         \centering
         \begin{tabular}{c c}
     $
-    M = \begin{bmatrix}
-    a_{k-1} & 1 & \ldots & 0 & 0 \\
-    a_{k-2} & 0 & \ldots & 0 & 0 \\
-    \vdots & 0 & \ldots & 0 & 0 \\ 
-    a_1 & 0 & \ldots & 1 & 0 \\
-    a_0 & 0 & \ldots & 0 & 1
-    \end{bmatrix}
+        M = \begin{bmatrix}
+        a_{k-1} & 1 & \ldots & 0 & 0 \\
+        a_{k-2} & 0 & \ldots & 0 & 0 \\
+        \vdots & 0 & \ldots & 1 & 0 \\ 
+        a_1 & 0 & \ldots & 0 & 1 \\
+        a_0 & 0 & \ldots & 0 & 0
+        \end{bmatrix}
     $
              &  
                 $v= \begin{bmatrix}
@@ -354,7 +353,7 @@ to indukcyjnie:
 
     \end{table}
     
-    Wtedy i tylko wtedy $\<u_n\>$ jest liniowym równaniem rekurencyjnym. 
+    Wtedy i tylko wtedy $\textlangle u_n \textrangle_{n=1}^{\infty}$ jest liniowym równaniem rekurencyjnym. 
 
 \end{twierdzenie}
 
@@ -363,35 +362,38 @@ to indukcyjnie:
 \begin{frame}{Twierdzenie c.d}
 
 \begin{proof}
-    Weźmy $M$ wówczas z twierdzenia CH: 
+    Weźmy $M$ z twierdzenia CH: 
     \begin{equation}
-        M^{k} =  a_1 M^{k} + \ldots a_0 \mathbb{1} \
+        M^{k} =  a_1 M^{k} + \ldots + a_0 \mathbb{1} \
     \end{equation}
-    mnożę to równanie przez 
     \begin{equation}
-        v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots a_k v^{t} \mathbb{1} 
+        v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots + a_k v^{t} \mathbb{1} 
     \end{equation} 
 
 
-i domnażam przez $M^{n}$ z lewej strony 
       \begin{equation}
-          v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots a_k v^{t} \mathbb{1} M^{n}
+          v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots + a_k v^{t} \mathbb{1} M^{n}
       \end{equation}
-      i pomnażam 
-      $$ v^{t}M^{k + n} w = a_1 v^{t} M^{k-1 + n}w + \ldots a_k v^{t} M^{n}w $$ 
-      co daję tezę
+
+      \begin{equation}
+          v^{t}M^{k + n} w = a_1 v^{t} M^{k-1 + n}w + \ldots + a_k v^{t} M^{n}w 
+      \end{equation}
+      co kończy dowód
 \end{proof}
 \end{frame}
 
 \begin{frame}{W drugą stronę}
 \begin{proof}
-    Niech $\textlangle u_n \textrangle_{n=1}^{\infty}$ będzie równaniem liniowym rekurencyjnym z warunkiem początkowym:
-    $u_{n+k} = a_1 u_{n+k-1} + \ldots a_{k} u_{k}$
-    przez indukcje pokazuje się, że $u_{n} = v^{t}M^{n}w $
+    Niech $\textlangle u_n \textrangle_{n=1}^{\infty}$ będzie równaniem liniowym rekurencyjnym z~warunkiem początkowym:
+    \[
+    u_{n+k} = a_1 u_{n+k-1} + \ldots + a_{k} u_{k}
+    \]
     
-    Sprawdźmy bazę indukcyjną:
-    $n=0$
-    wtedy $u_{0} = v^{t} \mathbb{1} w = u_0$
+
+    Sprawdźmy bazę indukcyjną: \newline 
+    $n=0$, wtedy $u_{0} = v^{t} \mathbb{1} w = u_0$,
+    
+    dalej indukcyjnie
     
 \end{proof}
 \end{frame}
@@ -403,7 +405,7 @@ Równanie rekurencyjne Fibonacciego:
 $$
 {\displaystyle u_{n}={\frac {1}{\sqrt {5}}}\left({\frac {1+{\sqrt {5}}}{2}}\right)^{n}-{\frac {1}{\sqrt {5}}}\left({\frac {1-{\sqrt {5}}}{2}}\right)^{n}.}
 $$
- Jak zapisać za pomocą równania rekurencyjnego? 
+ Jak zapisać ciąŋi za pomocą równania liniowego rekurencyjnego? 
 \begin{itemize}
     \item  $u_n = n$
     \pause 
@@ -417,7 +419,7 @@ $$
 
 \end{frame}
 
-\begin{frame}{Dekompozycja dla Fibonacciego}
+\begin{frame}{Rozkład dla ciągu Fibonacciego}
     \begin{equation*}
         \begin{bmatrix}
         u_{n+1} \\
@@ -464,7 +466,7 @@ $$
 
 \begin{frame}{Liczby algebraiczne}
 \begin{definicja}
-    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \Q[x]$. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$
+    Powiemy, że $a $ jest liczbą algebraiczną, jeżeli jest pierwiastkiem niezerowego wielomianu $p \in \Q[x]$. Zbiór liczb algebraicznych oznaczmy jako $\mathbb{A}$.
 \end{definicja}
 
 \begin{przyklad}
@@ -478,7 +480,7 @@ $$
 
 
 \begin{twierdzenie}
-    Niech $u_n$ jest równaniem rekurencyjnym liniowym rzędu 2
+    Niech $u_n$ będzie równaniem rekurencyjnym liniowym rzędu 2
     $$
         u_n = c_1 u_{n+1} + c_2 u_n
     $$
@@ -517,7 +519,7 @@ $$
     $$
         - \frac{a_1}{a_2} = (\frac{\lambda_2}{\lambda_1})^{n}
     $$
-    Poniżej pewnego $n$ nie ma szans na równość $\frac{\lambda_2}{\lambda_1}$
+    Poniżej pewnego $n$ nie ma szans na równość 
 \end{frame}
 
 \begin{frame}{$|\lambda_1| = |\lambda_2|$}
@@ -548,7 +550,7 @@ $$\frac{u_n}{|\lambda|^{n}} = 0 \iff u_n = 0$$
     \begin{tabular}{c c}
        \begin{figure}
             \centering
-            \includegraphics[width=40mm]{img/Zaznaczenie_081.png}
+            \includegraphics[width=40mm]{img/skolem-1.png}
         \end{figure}  & 
             $\frac{u_n}{|\lambda|^n} = a v^{n} + \overline{a} \overline{v} ^{n} $
  
@@ -570,20 +572,25 @@ Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
 \end{frame}
 
 \begin{frame}{Reprezentacja liczb algebraicznych }
-    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots a_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem, $d$ jest stopniem wielomianu.  
+    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots a_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem, $d$ jest stopniem wielomianu $p(x)$.  
     \begin{figure}
         \centering
-        \includegraphics[width=40mm]{img/Zaznaczenie_082.png}
+        \includegraphics[width=40mm]{img/reprez-skolem.png}
         \caption{Otoczenie liczby algebraicznej}
     \end{figure}
-    $$H(P) = \max \{ |a_0|, \ldots, |a_t| \}$$
-    \begin{twierdzenie}[Mignotte]
-            Jeśli $\alpha, \beta \in \A$ są różnymi pierwiastkami wielomianu $p$ wtedy 
-            $|\alpha - \beta| > \frac{\sqrt{6}}{d^{\frac{d+1}{2}} H^{d-1}}$
-    \end{twierdzenie}
-    
+    Współczynniki $a, b,  \mu \in \mathbb{Q}$ 
+    \pause
+    \newline
+    $\alpha$ jest unikatowym pierwiastkiem wielomianu $p$ w obrębie $\mu$
 \end{frame}
 
+\begin{frame}{Reprezentacja liczb algebraicznych}
+    $$H(P) = \max \{ |a_0|, \ldots, |a_t| \}$$
+    \begin{twierdzenie}[Mignotte]
+            Jeśli $\alpha, \beta \in \A$ są różnymi pierwiastkami wielomianu $p$, to 
+            $|\alpha - \beta| > \frac{\sqrt{6}}{deg^{\frac{deg+1}{2}} H(P)^{deg-1}}$
+    \end{twierdzenie}
+\end{frame}
 
 %\begin{frame}{liczba całkowita algebraiczna}
 %    \begin{definicja}
@@ -618,6 +625,21 @@ Poniżej pewnego $n$ nie ma szans na równość $\frac{\lambda_2}{\lambda_1}$
 
 \end{frame}
 
+\begin{frame}{Podsumowanie}
+    \begin{itemize}
+        \item  Dla liniowych rekurencyjnych ciągów o wyrazach całkowitych problem Skolema jest znany jako NP-trudny. \cite{BLONDEL200291}
+        \item Potrzebna jest algebraiczna teoria liczb bo rozwiązania prostego problemu rzędu $2$
+        \item 
+    \end{itemize}
+\end{frame}
 
+\begin{frame}{Referencje}
+    \bibliographystyle{plain}
+    \bibliography{ref}
+\end{frame}
+
+\begin{frame}{Koniec}
+    Dziękuje za uwagę
+\end{frame}
 
 \end{document}
