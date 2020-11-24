@@ -59,11 +59,14 @@
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}{Motywacja}
+\begin{frame}{Wstęp}
 \begin{itemize}
     \item Dlaczego problem równania rekurencyjnego liniowego jest na seminarium Lato? 
+    \pause
     \item Co mają wspólnego równania rekurencyjne liniowe i macierze?
+    \pause
     \item Jak trudny jest problem Skolema?  
+    \pause
     \item Co mają wspólnego liczby algebraiczne z problemem Skolema? 
 \end{itemize}
 \end{frame}
@@ -102,7 +105,9 @@
     \end{itemize}
     Pytanie:
     \begin{itemize}
+    \pause
         \item  Czy istnieje $n$ takie, że ilość słów akceptowanych przez $A$ jest równa liczbie słów akceptowanych przez $B$ 
+    \pause
         \item  Nie wiadomo, czy problem jest rozstrzygalny czy nierozstrzygalny. 
     \end{itemize}
     \pause
@@ -118,6 +123,7 @@
         \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
         \label{fig:my_label}
     \end{figure}
+    \pause
     \begin{cases}
         p_{n+1} = r_n + g_n \\
         g_{n+1} = p_n + r_n \\ 
@@ -135,6 +141,7 @@
     \caption{Automat skończony ze stanami $p, g, r$ i alfabetem $\Sigma = \{a,b,c \}$}
     \label{fig:my_label}
 \end{figure}
+\pause
     $$
     (p_{n+1}, q_{n+1}, r_{n+1}) 
     = (p_{n},q_{n},r_{n}) \begin{bmatrix}
@@ -146,19 +153,21 @@
 \end{frame}
 
 \begin{frame}{Liniowe równanie rekurencyjne}
-    $$
+
+    \begin{equation}
+        
         a_0, \ldots, a_{k-1} \in \mathbb{Z} 
-    $$
-
-    $$
+    \end{equation}
+    \pause 
+    \begin{equation}
         u_0, \ldots, u_{k-1} \in \mathbb{Z}
-    $$
-
-
+    \end{equation}
+    \pause
     Liniowe równanie rekurencyjne: 
-    $$
-    u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
-    $$
+    \begin{equation}
+            u_{n+k}=a_{1} u_{n+k-1}+a_{2} u_{n+k-2}+\ldots+a_{k} u_{n}
+    \end{equation}
+    \pause
     Zwykłe oznaczenie $\textlangle u_n \textrangle _{n=1}^{\infty}$
     $a_0 \neq 0$
 \end{frame}
@@ -174,6 +183,7 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
             1 & 0
         \end{bmatrix}
     \end{equation*}
+    \pause
     \begin{equation*}
          g_{n} = [2,5] \begin{bmatrix}
             3 & 2 \\
@@ -183,10 +193,11 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
             2 & -1
         \end{bmatrix}
     \end{equation*}
-    
+    \pause
     \begin{align*}
-        u_n = f_n - q_n && \text{jest ciągiem rekurencyjnym} 
+        u_n = f_n - g_n && \text{jest ciągiem rekurencyjnym} 
     \end{align*}
+    \pause
     $$
         f_n - g_n = [1,0|2,5] 
         \left[
@@ -211,7 +222,9 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
 
 
 \begin{frame}
-    Przykład:
+    Przykład równania liniowego rekurencyjnego rzędu 2:
+    \begin{przyklad}
+
     Ciąg Fibonacciego:
    \begin{equation*}
         \begin{cases}
@@ -220,16 +233,19 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
         u_{0} = 0
         \end{cases}
     \end{equation*}
+            
+    \end{przyklad}
+    
     Występuje podobieństwo z wcześniej podanymi przykładami. 
 
 \end{frame}
 
 \begin{frame}{Zapis macierzowy}
     $$\exist v, w \in \mathbb{Z}^{k}, M \in \mathbb{Z}^{k\times k} $$
+    \pause
     $$u_n = v^{t}M^{n}w$$
-
-    \begin{equation*}
-    
+    \pause
+   $$
         M = \begin{bmatrix}
         a_{k-1} & 1 & \ldots & 0 & 0 \\
         a_{k-2} & 0 & \ldots & 0 & 0 \\
@@ -237,17 +253,19 @@ Weźmy dwa ciągi rekurencyjne liniowe $f_n, g_n$
         a_1 & 0 & \ldots & 0 & 1 \\
         a_0 & 0 & \ldots & 0 & 0
         \end{bmatrix}
-    \end{equation*}
+   $$
 \end{frame}
 
-\begin{frame}{Ciąg Fibonacciego:}
+\begin{frame}{Ciąg Fibonacciego -- Zapis macierzowy:}
 \begin{equation*}
+\pause
 \begin{cases}
 u_{n+2} = u_{n+1} + u_n \\
 u_{1} = 1 \\
 u_{0} = 0 
 \end{cases}
 \end{equation*}
+\pause
 \begin{equation*}
         \begin{bmatrix}
         u_{n+2} & u_{n+1} \\
@@ -264,6 +282,7 @@ u_{0} = 0
         u_{n+2} & u_{n+1}
         \end{bmatrix}
 \end{equation*}
+\pause
 Ponieważ równocześnie:
 \begin{equation*}
     \begin{bmatrix}
@@ -276,6 +295,7 @@ Ponieważ równocześnie:
     
     \end{bmatrix}
 \end{equation*}
+\pause
 to indukcyjnie: 
 \begin{table}[]
     \centering
@@ -293,7 +313,7 @@ to indukcyjnie:
         \end{bmatrix}
 
     \end{equation*}
-&  
+&  \pause
        \begin{equation*}
         \begin{bmatrix}
         u_{n+1} \\
@@ -318,16 +338,36 @@ to indukcyjnie:
 
 \end{frame}
 
+\begin{frame}{Wielomian charakterystyczny}
+
+\begin{equation}
+    {\displaystyle M\in \mathbb {Z}^{k \times k},}
+\end{equation}
+\pause
+\begin{definicja}
+Wielomian charakterystyczny $p_{A}(t)$ macierzy kwadratowej $M$ definiuje się jako:
+\begin{equation}
+        {\displaystyle p_{M}(\lambda)=\det(\lambda  \mathbb{1} -\mathbf {A} ).}
+\end{equation}
+\end{definicja}
+\pause
+\begin{definicja}
+    Zbiór wartości własnych $\lambda_{i}$ to pierwiastki tego wielomianu. 
+\end{definicja}
+
+
+\end{frame}
+
 \begin{frame}{Lemat redukcji}
 
 \begin{namedtheorem}[Cayleya-Hamiltona]
-    Jeśli $p(t)$ jest wielomianem charakterystycznym dla macierzy $M$, wtedy macierz $p(M)$ jest macierzą zerową. 
+    Jeśli $p_{M}(t)$ jest wielomianem charakterystycznym dla macierzy $M$, wtedy macierz $p_{M}(M)$ jest macierzą zerową. 
 \end{namedtheorem}
 
 \pause
 \begin{twierdzenie}
 
-    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$,  $u_n = v^{t}M^{n}w \in \Z$ oraz
+    Niech $v, w \in \Z^{k}, M \in \Z^{k\times k}$, \pause $u_n = v^{t}M^{n}w \in \Z$ oraz
     \begin{table}[]
         \centering
         \begin{tabular}{c c}
@@ -352,7 +392,7 @@ to indukcyjnie:
         \end{tabular}
 
     \end{table}
-    
+    \pause
     Wtedy i tylko wtedy $\textlangle u_n \textrangle_{n=1}^{\infty}$ jest liniowym równaniem rekurencyjnym. 
 
 \end{twierdzenie}
@@ -364,35 +404,47 @@ to indukcyjnie:
 \begin{proof}
     Weźmy $M$ z twierdzenia CH: 
     \begin{equation}
-        M^{k} =  a_1 M^{k} + \ldots + a_0 \mathbb{1} \
+        M^{k} =  a_1 M^{k-1} + \ldots + a_0 \mathbb{1} \
     \end{equation}
+    \pause
     \begin{equation}
         v^{t}M^{k} = a_1 v^{t} M^{k-1} + \ldots + a_k v^{t} \mathbb{1} 
     \end{equation} 
 
-
+    \pause
       \begin{equation}
           v^{t}M^{k} M^{n} = a_1 v^{t} M^{k-1} M^{n} + \ldots + a_k v^{t} \mathbb{1} M^{n}
       \end{equation}
-
+    \pause
       \begin{equation}
           v^{t}M^{k + n} w = a_1 v^{t} M^{k-1 + n}w + \ldots + a_k v^{t} M^{n}w 
       \end{equation}
-      co kończy dowód
+      \begin{equation}
+          u_{n+k} = a_1 u_{n+k -1 } \ldots a_{k} u_{n}
+      \end{equation}
 \end{proof}
 \end{frame}
 
 \begin{frame}{W drugą stronę}
 \begin{proof}
-    Niech $\textlangle u_n \textrangle_{n=1}^{\infty}$ będzie równaniem liniowym rekurencyjnym z~warunkiem początkowym:
+    Niech $\textlangle u_n \textrangle_{n=1}^{\infty}$ będzie równaniem liniowym rekurencyjnym z~warunkiem początkowym: $u_0. \ldots u_{k-1} \in \mathbb{Z}$ i dla $n \geq k$ 
     \[
     u_{n+k} = a_1 u_{n+k-1} + \ldots + a_{k} u_{k}
-    \]
+    \] 
     
-
+    \pause
     Sprawdźmy bazę indukcyjną: \newline 
-    $n=0$, wtedy $u_{0} = v^{t} \mathbb{1} w = u_0$,
-    
+    $n=0$, wtedy dla $v= \begin{bmatrix}
+            u_{k-1} \\ u_{k-2} \\ \vdots \\ u_{0} \\
+            \end{bmatrix}
+            w =  \begin{bmatrix}
+            0 \\ 0 \\ \vdots \\ 1 \\
+            \end{bmatrix}
+        $
+    \newline
+    $u_{0} = v^{t} \mathbb{1} w = u_0$,
+     
+    \pause
     dalej indukcyjnie
     
 \end{proof}
@@ -405,7 +457,7 @@ Równanie rekurencyjne Fibonacciego:
 $$
 {\displaystyle u_{n}={\frac {1}{\sqrt {5}}}\left({\frac {1+{\sqrt {5}}}{2}}\right)^{n}-{\frac {1}{\sqrt {5}}}\left({\frac {1-{\sqrt {5}}}{2}}\right)^{n}.}
 $$
- Jak zapisać ciąŋi za pomocą równania liniowego rekurencyjnego? 
+ Jak zapisać ciągi za pomocą równania liniowego rekurencyjnego? 
 \begin{itemize}
     \item  $u_n = n$
     \pause 
@@ -420,7 +472,7 @@ $$
 \end{frame}
 
 \begin{frame}{Rozkład dla ciągu Fibonacciego}
-    \begin{equation*}
+    \begin{equation}
         \begin{bmatrix}
         u_{n+1} \\
         u_{n}
@@ -434,11 +486,15 @@ $$
         u_1 \\
         u_0 
         \end{bmatrix}
-
-    \end{equation*}
+    \end{equation}
+    \pause
+    
     Liczymy rozkład $M = PDP^{-1}$ i uzyskujemy $\lambda_1 =  \frac{1}{2} \left(1-\sqrt{5}\right), \lambda_2 = \frac{1}{2} \left(1-\sqrt{5}\right) $
-\begin{equation*}
-    u_n = 
+
+\pause
+    \newline
+    \begin{equation}
+         u_n = 
         \begin{bmatrix}
             \lambda_1 & \lambda_2 \\
          1 & 1 \\
@@ -456,10 +512,14 @@ $$
            1 \\
            0
         \end{bmatrix}
-    \end{equation*}
-    \begin{equation*}
+    \end{equation}
+    
+    \pause
+    \newline
+    
+    \begin{equation}
         u_n = \frac{\lambda_1^{n} - \lambda_2^{n}}{\sqrt{5}}
-    \end{equation*}
+    \end{equation}
  
  
 \end{frame}
@@ -490,40 +550,103 @@ $$
     $$
         u_0, u_1 \in \mathbb{Q}
     $$
-    wówczas $\exists n : u_n = 0$
+    wówczas jest rozstrzygalny tj. potrafimy określić czy $\exists n : u_n = 0$ ?
 \end{twierdzenie}
 
 \end{frame}
 
+\begin{frame}{Przykłady problemów}
+\begin{itemize}
+    \item $u_{n+2} = u_{n+1} + u_{n}$ $u_{1} = 1, u_{2} = 1$
+    \pause
+    \begin{itemize}
+        \item $u_{n}$ nigdy nie jest zero, jest zawsze pozytywne
+        \pause
+        \item i $\lambda_1 > \lambda_2$        
+    \end{itemize}
+
+    \pause
+    \item $u_{n} = -2 u_{n-1} + x_{n-2}$,M $u_{0} = 0$
+    \begin{itemize}
+          \item dla $u_{0} = 2, u_{1} = 1$ n = 3 i tylko dla niego
+        \pause 
+        \item $ u_n = (1-\frac{3}{2\sqrt{2}})(-1- \sqrt{2})^n + \frac{1}{4}(4+3\sqrt{2})(\sqrt{2} - 1)^n $
+            \pause 
+    \item współczynnik z lewej strony dominuje dla dużego $n$
+    \end{itemize}
+  
+    
+
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Przykłady problemów}
+\begin{itemize}
+    \item $u_{n} = 2 x_{n-1} - 3 x_{n-2}, u_{0} = 0$
+    \begin{itemize}
+        \item $\lambda_1 = 1 + i\sqrt{2}, \lambda_2 = 1 - i\sqrt{2}$
+        \pause
+        \item $|\lambda_{1}| = |\lambda_{2}| $
+        \pause
+        \item tylko $u_{0} = 0$ spełnia (trudne) 
+    \end{itemize}
+    \pause
+    \item $u_{n} = u_{n-2}$ z $u_{0} = 0$ $u_{1} = 1$
+    \pause
+    \begin{itemize}
+        \item dla $n$ parzystego mamy $u_n$ = 0 \cite{litt}
+    \end{itemize}
+
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{$\lambda_1= \lambda_2$}
 
 \begin{proof}
+    \pause
     $$u_n = 0 \iff  u_n = a n \lambda^{n} + b \lambda^{n} = 0$$
-    
+    \pause
     $$ a n \lambda^{n} + b \lambda^{n} = 0 $$
+    \pause
     $$ a n + b = 0 $$
-    Rozwiązywalne dla $a, b \in \A \cap \Q $
+    \pause
+    Rozwiązywalne dla $a, b \in \A $
 \end{proof}
 
     
 \end{frame}
 
+
+
+
 \begin{frame}{Szkic dowodu $\lambda_1 \neq \lambda_2$}
-    BSO: 
+    Dla: 
+    \pause
     $|\lambda_1| > |\lambda_2|, \lambda_1, \lambda_2 \in \mathbb{R}$
-    
-    Otrzymujemy wielomian charakterystyczny 
+    \pause
+    otrzymujemy równanie charakterystyczne:
     $$
-       a_1 \lambda^{n} = - a_2 \lambda^{n}
+       a_1 \lambda_{1}^{n} + a_2 \lambda_{2}^{n} = 0
     $$
+    \pause
     $$
         - \frac{a_1}{a_2} = (\frac{\lambda_2}{\lambda_1})^{n}
     $$
-    Poniżej pewnego $n$ nie ma szans na równość 
+    \pause
+    Powyżej pewnego $n$ nie ma szans na równość 
 \end{frame}
 
-\begin{frame}{$|\lambda_1| = |\lambda_2|$}
+\begin{frame}{$|\lambda_1| = |\lambda_2|$ i $\lambda_1 \neq \lambda_2$}
+Wiemy, że występują w parach sprzężonych. 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=40mm]{img/skolem-1.png}
+\end{figure}
+
+\pause 
 \begin{equation*}
     u_n = a \lambda^{n} + \overline{a} \overline{\lambda}^{n} 
 \end{equation*}
@@ -535,30 +658,23 @@ $$
 \begin{equation*}
     a \lambda^{n} + \overline{a} \overline{\lambda}^{n} = 0 \iff Re(a {\lambda^{n}}) = 0 
 \end{equation*} 
-\pause
+
+
+\end{frame}
+    
+\begin{frame}{$|\lambda_1| = |\lambda_2|$ i $\lambda_1 \neq \lambda_2$}
 Weźmy: 
 \begin{align*}
     v = \frac{\lambda}{|\lambda|} && |v| = 1
 \end{align*}
+\pause 
+
 $$\frac{u_n}{|\lambda|^{n}} = 0 \iff u_n = 0$$
-
-\end{frame}
-    
-\begin{frame}{$|\lambda_1| = |\lambda_2|$}
-\begin{table}[]
-    \centering
-    \begin{tabular}{c c}
-       \begin{figure}
-            \centering
-            \includegraphics[width=40mm]{img/skolem-1.png}
-        \end{figure}  & 
-            $\frac{u_n}{|\lambda|^n} = a v^{n} + \overline{a} \overline{v} ^{n} $
- 
-    \end{tabular}
-\end{table}
-
+\pause
+$$\frac{u_n}{|\lambda|^n} = a v^{n} + \overline{a} \overline{v} ^{n} $$
+\pause
 \begin{equation*}
-    a v^{n} \quad  \text{zanika na osi urojonej} \iff u_n = 0 \iff 
+    a v^{n} \quad  \text{zanika na osi rzeczywistej} \iff u_n = 0 \iff 
 \end{equation*}
 \begin{align*}
     v^{n} = \frac{i c}{a} && \text{gdzie} \quad |\frac{c}{a}| = 1
@@ -572,20 +688,19 @@ Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
 \end{frame}
 
 \begin{frame}{Reprezentacja liczb algebraicznych }
-    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots a_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem, $d$ jest stopniem wielomianu $p(x)$.  
+    Mamy wielomian $p(x) = a_0 + a_1 x + \ldots a_{t} x^{t}$ stopnia $t$, niech $\alpha$ będzie jedynym pierwiastkiem, $d$ jest stopniem wielomianu $p(x)$. \pause 
     \begin{figure}
         \centering
         \includegraphics[width=40mm]{img/reprez-skolem.png}
         \caption{Otoczenie liczby algebraicznej}
     \end{figure}
-    Współczynniki $a, b,  \mu \in \mathbb{Q}$ 
-    \pause
-    \newline
-    $\alpha$ jest unikatowym pierwiastkiem wielomianu $p$ w obrębie $\mu$
+    \pause 
+    Współczynniki $a, b,  \mu \in \mathbb{Q}$, gdzie $\alpha$ jest unikatowym pierwiastkiem wielomianu $p$ w obrębie $\mu$
 \end{frame}
 
 \begin{frame}{Reprezentacja liczb algebraicznych}
     $$H(P) = \max \{ |a_0|, \ldots, |a_t| \}$$
+    $$ deg = deg(p) $$
     \begin{twierdzenie}[Mignotte]
             Jeśli $\alpha, \beta \in \A$ są różnymi pierwiastkami wielomianu $p$, to 
             $|\alpha - \beta| > \frac{\sqrt{6}}{deg^{\frac{deg+1}{2}} H(P)^{deg-1}}$
@@ -600,8 +715,8 @@ Potrzebujemy rozwiązać równanie $v^{n} = \beta, v, \beta \in \A$
 %\end{frame}
 
 
-\begin{frame}{$\exists n: u_n = 0$ dla równania $\alpha^{n} = \beta$}
-Niech $a \in Z$
+\begin{frame}{$\exists n: u_n = 0$ dla równania $a^{n} = \beta$}
+Niech $a \in \mathbb{Z}$
 \begin{equation}
 v_p(a)= 
     \begin{cases}
@@ -615,21 +730,23 @@ $v_p(\frac{a}{b}) = v_p(a) - v_p(b)$
 
 
 \[
-    v_{p}(\alpha^{n}) = v_p(\beta) 
+    v_{p}(a^{n}) = v_p(\beta) 
 \]
 \[
-    n \cdot v_{p}(\alpha) = v_{p}(\beta)
+    n \cdot v_{p}(a) = v_{p}(\beta)
 \]
-
-Poniżej pewnego $n$ nie ma szans na równość $\frac{\lambda_2}{\lambda_1}$
+\pause 
+Powyżej pewnego $n$ nie ma szans na równość.
 
 \end{frame}
 
 \begin{frame}{Podsumowanie}
     \begin{itemize}
         \item  Dla liniowych rekurencyjnych ciągów o wyrazach całkowitych problem Skolema jest znany jako NP-trudny. \cite{BLONDEL200291}
-        \item Potrzebna jest algebraiczna teoria liczb bo rozwiązania prostego problemu rzędu $2$
-        \item 
+        \item Potrzebna jest algebraiczna teoria liczb do rozwiązania prostego problemu rzędu $2$ \cite{filip}
+        \pause
+        \item Problemy z reprezentacją liczb algebraicznych można zastąpić poprzez jej wielomiany i bliskie otoczenia zer. \cite{ouaknine2017ultimate}
+        \item Nierozstrzygalność dla ciągów liniowych rekurencyjnych rzędu 5.
     \end{itemize}
 \end{frame}
 
@@ -641,5 +758,6 @@ Poniżej pewnego $n$ nie ma szans na równość $\frac{\lambda_2}{\lambda_1}$
 \begin{frame}{Koniec}
     Dziękuje za uwagę
 \end{frame}
+
 
 \end{document}
